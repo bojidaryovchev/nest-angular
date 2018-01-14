@@ -4,7 +4,9 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "webpack --w",
+    "dev": "nodemon ./dist/server.bundle.js localhost 8888",
+    "dev-server": "concurrent \" npm run watch \" \" npm run dev \""
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,15 @@
   "bugs": {
     "url": "https://github.com/bojidaryovchev/Node-Express-MongoDB-Mongoose-Overview/issues"
   },
-  "homepage": "https://github.com/bojidaryovchev/Node-Express-MongoDB-Mongoose-Overview#readme"
+  "homepage": "https://github.com/bojidaryovchev/Node-Express-MongoDB-Mongoose-Overview#readme",
+  "devDependencies": {
+    "@types/node": "^9.3.0",
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.14.11",
+    "ts-loader": "^3.2.0",
+    "tslint": "^5.9.1",
+    "tslint-loader": "^3.5.3",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
+  }
 }
