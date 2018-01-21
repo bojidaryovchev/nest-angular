@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div class="list-group">
+      <a *ngFor="let server of servers"
+        [routerLink]="['/servers', server.id]"
+        class="list-group-item clearfix">
+        {{ server.name }}
+        <button type="button"
+          [routerLink]="['/servers', server.id, 'edit']"
+          (click)="$event.preventDefault(); $event.stopPropagation();"
+          class="btn btn-primary pull-right"
+          >Edit</button>
+      </a>
+      <!-- [routerLink]="['/servers', server.id, 'edit']" onEditServer($event, server.id) -->
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

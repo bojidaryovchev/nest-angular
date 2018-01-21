@@ -7,11 +7,6 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "jsx": "react",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
     "noEmitHelpers": true,
     "noImplicitAny": true,
     "outDir": "./dist",
@@ -21,11 +16,15 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "lib": [
+      "es2017",
+      "dom"
+    ]
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
-    "server/**/*.ts"
+    "server/**/*.ts",
   ]
 }
