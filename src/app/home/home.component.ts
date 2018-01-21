@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
         }
     };
 
-    request.open('GET', '/api/users', true);
+    request.open('GET', '/users', true);
     request.send(null);
   }
 
