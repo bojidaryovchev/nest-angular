@@ -20,7 +20,7 @@ const Config: IConfig = {
     rootPath,
     db: 'mongodb://localhost:27017/store',
     port: 1337,
-    sessionSecret: ''
+    sessionSecret: 'secret'
   },
   production: {
     rootPath,

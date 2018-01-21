@@ -13,8 +13,7 @@
     "build:server": "webpack -p",
     "build": "ng build && npm run build:server",
     "watch": "webpack --w",
-    "server": "nodemon ./dist/server.bundle.js localhost 8888",
-    "dev": "concurrent \" npm run watch \" \" ng serve \""
+    "dev": "concurrent \" npm run watch \" \" ng serve --proxy-config proxy.conf.json \" "
   },
   "repository": {
     "type": "git",
@@ -50,7 +49,7 @@
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "node-sass": "^4.7.2",
-    "nodemon": "^1.14.11",
+    "nodemon-webpack-plugin": "^0.1.6",
     "protractor": "^5.2.2",
     "ts-loader": "^3.2.0",
     "ts-node": "^4.1.0",
