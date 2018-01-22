@@ -1,12 +1,12 @@
 import { Application, Request, Response } from 'express';
+import { join } from 'path';
 import controllers = require('../controllers/controllers');
+import { IEnvironmentConfig } from './config';
 
-module.exports = (app: Application) => {
-  app.get('/', controllers.home.index);
+module.exports = (config: IEnvironmentConfig, app: Application) => {
+  // app.get('/api/index', controllers.home.index);
 
   app.all('*', (req: Request, res: Response) => {
-    res.status(404);
-    res.write('404 Not Found');
-    res.end();
+    res.sendFile(join(config.rootPath, 'dist/index.html'));
   });
 };
