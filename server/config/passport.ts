@@ -4,7 +4,7 @@ import { User } from '../models/user.model';
 
 module.exports = () => {
   use(new LocalStrategy((username: string, password: string, done: Function) => {
-    User.findOne({ username: username })
+    User.findOne({ username })
       .then((user: any) => {
         if (!user) {
           return done(null, false);
