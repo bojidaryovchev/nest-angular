@@ -2,6 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 
+const env = process.env.NODE_ENV || 'development';
+const dev = env === 'development';
 const nodeModules = {};
 
 fs.readdirSync('node_modules')
@@ -12,15 +14,17 @@ fs.readdirSync('node_modules')
     nodeModules[moduleName] = 'commonjs ' + moduleName;
   });
 
+const plugins = [
+    new NodemonPlugin()
+];
+
 module.exports = {
     entry: path.resolve(__dirname, "./server/index.ts"),
     output: {
         path: path.resolve(__dirname, "./dist"), 
         filename: "server.bundle.js"
     },
-    plugins: [
-        new NodemonPlugin()
-    ],
+    plugins: dev ? plugins : [],
     target: "node",
     externals: nodeModules,
     module: {
