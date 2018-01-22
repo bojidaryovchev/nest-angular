@@ -1,64 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { Routes, RouterModule } from '@angular/router';
+
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { UsersComponent } from './users/users.component';
-import { ServersComponent } from './servers/servers.component';
-import { UserComponent } from './users/user/user.component';
-import { EditServerComponent } from './servers/edit-server/edit-server.component';
-import { ServerComponent } from './servers/server/server.component';
-import { ServersService } from './servers/servers.service';
+import { HeaderComponent } from './header/header.component';
+import { RecipesComponent } from './recipes/recipes.component';
+import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
+import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
+import { RecipeItemComponent } from './recipes/recipes-list/recipe-item/recipe-item.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
+import { IngredientComponent } from './shared/components/ingredient/ingredient.component';
+import { DropdownDirective } from './shared/directives/dropdown.directive';
+import { ShoppingListService } from './shopping-list/shopping-list.service';
 
-const appRoutes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'users',
-    component: UsersComponent
-  },
-  {
-    path: 'users/:id/:name',
-    component: UsersComponent
-  },
-  {
-    path: 'servers',
-    component: ServersComponent,
-    children: [
-      {
-        path: ':id',
-        component: ServerComponent
-      },
-      {
-        path: ':id/edit',
-        component: EditServerComponent
-      }
-    ]
-  }
-];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    UsersComponent,
-    ServersComponent,
-    UserComponent,
-    EditServerComponent,
-    ServerComponent
+    HeaderComponent,
+    RecipesComponent,
+    RecipesListComponent,
+    RecipeDetailsComponent,
+    RecipeItemComponent,
+    ShoppingListComponent,
+    ShoppingListEditComponent,
+    IngredientComponent,
+    DropdownDirective,
   ],
   imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    RouterModule.forRoot(appRoutes)
+    BrowserModule
   ],
-  providers: [ServersService],
+  providers: [ShoppingListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

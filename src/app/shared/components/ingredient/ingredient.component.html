@@ -1,0 +1,6 @@
+<a class="list-group-item" cursor="pointer">
+  {{ ingredient.name }} ({{ ingredient.amount }})
+  <button type="button"
+    class="btn btn-danger pull-right btn-small"
+    (click)="onRemoveIngredient()">Remove</button>
+</a>

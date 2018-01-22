@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-xs-10">
+    <app-shopping-list-edit></app-shopping-list-edit>
+    <hr>
+    <ul class="list-group">
+      <app-ingredient
+        *ngFor="let ingredient of ingredients; let i = index;"
+        [ingredient]="ingredient"
+        (ingredientRemoved)="shoppingListService.removeIngredient(i)"
+      ></app-ingredient>
+    </ul>
+  </div>
+</div>
