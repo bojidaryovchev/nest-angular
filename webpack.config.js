@@ -18,10 +18,12 @@ const plugins = [
     new NodemonPlugin()
 ];
 
+// TODO: add plugins
+
 module.exports = {
-    entry: path.resolve(__dirname, "./server/index.ts"),
+    entry: path.resolve(__dirname, "./server/bin/www.ts"),
     output: {
-        path: path.resolve(__dirname, "./dist"), 
+        path: path.resolve(__dirname, "./bin"), 
         filename: "server.bundle.js"
     },
     plugins: dev ? plugins : [],

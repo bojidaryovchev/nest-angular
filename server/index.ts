@@ -7,7 +7,10 @@ const app: e.Application = e();
 
 require('./config/database')(config);
 require('./config/express')(config, app);
-require('./config/routes')(app);
+require('./config/routes')(config, app);
 require('./config/passport')();
 
-app.listen(config.port);
+export {
+  app,
+  config
+};
