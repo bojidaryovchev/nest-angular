@@ -4,8 +4,8 @@ import mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
 
-module.exports = (environment: IEnvironmentConfig) => {
-  mongoose.connect(environment.db, {useMongoClient: true});
+module.exports = (config: IEnvironmentConfig) => {
+  mongoose.connect(config.db, {useMongoClient: true});
 
   const db: Connection = mongoose.connection;
 

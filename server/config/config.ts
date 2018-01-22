@@ -13,7 +13,7 @@ interface IConfig {
   production: IEnvironmentConfig;
 }
 
-const rootPath = normalize(join(__dirname, '../../'));
+const rootPath = process.cwd();
 
 const Config: IConfig = {
   development: {
