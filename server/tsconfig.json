@@ -9,7 +9,6 @@
     "experimentalDecorators": true,
     "noEmitHelpers": true,
     "noImplicitAny": true,
-    "outDir": "./dist",
     "removeComments": true,
     "sourceMap": true,
     "target": "es5",
@@ -25,6 +24,6 @@
     "node_modules"
   ],
   "include": [
-    "server/**/*.ts",
+    "./**/*.ts",
   ]
 }
