@@ -7,10 +7,12 @@
     "ng": "ng",
     "start": "ng serve",
     "build:client": "ng build",
+    "build:client:prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "ng build && webpack -p",
+    "build:server": "webpack -p --progress",
+    "build": "npm run build:client && npm run build:server",
     "watch": "webpack --w",
     "dev": "concurrent \" npm run watch \" \" ng serve --proxy-config proxy.conf.json \" "
   },
