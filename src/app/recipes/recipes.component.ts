@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeItem } from './recipes-list/recipe-item/recipe-item.component';
-import { RecipesService } from './recipes.service';
+import { RecipesService } from './../services/recipes.service';
 
 @Component({
   selector: 'app-recipes',
@@ -10,8 +10,6 @@ import { RecipesService } from './recipes.service';
 })
 export class RecipesComponent implements OnInit {
   recipes: RecipeItem[];
-  currentRecipe: RecipeItem;
-  recipeSelected = false;
 
   constructor(
     private readonly recipesService: RecipesService
@@ -20,11 +18,5 @@ export class RecipesComponent implements OnInit {
   ngOnInit() {
     this.recipesService.getRecipes()
       .then((recipes: RecipeItem[]) => this.recipes = recipes);
-
-    this.recipesService.recipeSelected
-      .subscribe((recipe: RecipeItem) => {
-        this.currentRecipe = recipe;
-        this.recipeSelected = true;
-      });
   }
 }

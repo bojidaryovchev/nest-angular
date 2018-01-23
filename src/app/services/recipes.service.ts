@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { RecipeItem } from './recipes-list/recipe-item/recipe-item.component';
+import { RecipeItem } from '../recipes/recipes-list/recipe-item/recipe-item.component';
 import { Ingredient } from '../shared/components/ingredient/ingredient.component';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
+import { ShoppingListService } from './shopping-list.service';
 
 @Injectable()
 export class RecipesService {
@@ -22,6 +22,10 @@ export class RecipesService {
   constructor(
     private readonly shoppingListService: ShoppingListService
   ) { }
+
+  public getRecipe(id: number): RecipeItem {
+    return this.recipes[id];
+  }
 
   public getRecipes(): Promise<RecipeItem[]> {
     return new Promise<RecipeItem[]>((resolve, reject) => {

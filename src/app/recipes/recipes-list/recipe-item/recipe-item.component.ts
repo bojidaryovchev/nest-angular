@@ -17,6 +17,7 @@ export class RecipeItem {
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: RecipeItem;
+  @Input() recipeIndex: number;
 
   constructor() { }
 

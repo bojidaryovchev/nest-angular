@@ -1,7 +1,6 @@
-<app-header (navigationClicked)="navigate($event)"></app-header>
+<app-header></app-header>
 <div class="row">
   <div class="col-md-12">
-    <app-recipes *ngIf="showRecipes"></app-recipes>
-    <app-shopping-list *ngIf="showShoppingList"></app-shopping-list>
+    <router-outlet></router-outlet>
   </div>
 </div>
