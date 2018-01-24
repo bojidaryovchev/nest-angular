@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bojidaryovchev/Node-Express-MongoDB-Mongoose-Overview.git"
+    "url": "git+https://github.com/bojidaryovchev/angular-express-mongoose.git"
   },
   "author": "bojidaryovchev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bojidaryovchev/Node-Express-MongoDB-Mongoose-Overview/issues"
+    "url": "https://github.com/bojidaryovchev/angular-express-mongoose/issues"
   },
-  "homepage": "https://github.com/bojidaryovchev/Node-Express-MongoDB-Mongoose-Overview#readme",
+  "homepage": "https://github.com/bojidaryovchev/angular-express-mongoose#readme",
   "devDependencies": {
     "@angular/cli": "^1.6.5",
     "@angular/compiler-cli": "^5.2.1",
