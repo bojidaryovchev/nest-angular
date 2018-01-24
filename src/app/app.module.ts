@@ -15,6 +15,7 @@ import { DropdownDirective } from './shared/directives/dropdown.directive';
 import { AppRoutingModule } from './app.routing.module';
 import { ServicesModule } from './services/services.module';
 import { GuardsModule } from './guards/guards.module';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { GuardsModule } from './guards/guards.module';
     RecipesComponent,
     RecipesListComponent,
     RecipeDetailsComponent,
+    RecipeEditComponent,
     RecipeItemComponent,
     ShoppingListComponent,
     ShoppingListEditComponent,

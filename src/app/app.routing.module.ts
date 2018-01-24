@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
 import { CanDeactivateGuardService } from './guards/can-deactivate-guard.service';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 const appRoutes: Routes = [
   {
@@ -17,8 +18,16 @@ const appRoutes: Routes = [
     component: RecipesComponent,
     children: [
       {
+        path: 'new',
+        component: RecipeEditComponent
+      },
+      {
         path: ':id',
         component: RecipeDetailsComponent,
+      },
+      {
+        path: ':id/edit',
+        component: RecipeEditComponent
       }
     ]
   },

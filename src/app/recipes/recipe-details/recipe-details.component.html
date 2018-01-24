@@ -15,9 +15,9 @@
         Manage Recipe <span class="caret caret-clean"></span>
       </button>
       <div class="dropdown-menu">
-        <li><a href="#" (click)="onAddToShoppingList()">To Shopping List</a></li>
-        <li><a href="#">Edit Recipe</a></li>
-        <li><a href="#">Delete Recipe</a></li>
+        <li><a routerLink="/shopping-list" (click)="onAddToShoppingList()">To Shopping List</a></li>
+        <li><a [routerLink]="['edit']">Edit Recipe</a></li>
+        <li><a (click)="onDeleteRecipe()" style="cursor: pointer;" >Delete Recipe</a></li>
       </div>
     </div>
   </div>

@@ -7,8 +7,10 @@
     <!-- navbar-default -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a [routerLink]="['recipes']">Recipes</a></li>
-        <li><a [routerLink]="['shopping-list']">Shopping List</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <a [routerLink]="['recipes']">Recipes</a></li>
+        <li routerLinkActive="active">
+          <a [routerLink]="['shopping-list']" >Shopping List</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" appDropdown>

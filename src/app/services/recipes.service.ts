@@ -29,11 +29,15 @@ export class RecipesService {
 
   public getRecipes(): Promise<RecipeItem[]> {
     return new Promise<RecipeItem[]>((resolve, reject) => {
-      resolve(this.recipes.slice());
+      resolve(this.recipes);
     });
   }
 
   public addIngredientsToShoppingList(ingredients: Ingredient[]): void {
     this.shoppingListService.addIngredients(ingredients);
+  }
+
+  public removeRecipe(index: number): void {
+    this.recipes.splice(index, 1);
   }
 }
