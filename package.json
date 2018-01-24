@@ -13,8 +13,9 @@
     "e2e": "ng e2e",
     "build:server": "webpack -p --progress",
     "build": "npm run build:client && npm run build:server",
-    "watch": "webpack --w",
-    "dev": "concurrent \" npm run watch \" \" ng serve --proxy-config proxy.conf.json \" "
+    "watch:server": "webpack --w",
+    "watch:client": "ng serve --proxy-config proxy.conf.json",
+    "dev": "concurrent \" npm run watch:server \" \" npm run watch:client \" "
   },
   "repository": {
     "type": "git",
