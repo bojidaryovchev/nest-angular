@@ -7,7 +7,6 @@
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "noEmitHelpers": true,
     "noImplicitAny": true,
     "removeComments": true,
     "sourceMap": true,
@@ -24,6 +23,6 @@
     "node_modules"
   ],
   "include": [
-    "./**/*.ts",
+    "server/**/*.ts",
   ]
 }
