@@ -8,11 +8,7 @@ const env = process.env.NODE_ENV || 'development';
 const dev = env === 'development';
 const plugins = [
     new NodemonPlugin(),
-    new ClosureCompilerPlugin({options: {
-        languageIn: 'ECMASCRIPT6',
-        languageOut: 'ECMASCRIPT5',
-        compilationLevel: 'SIMPLE'
-    }})
+    new ClosureCompilerPlugin({})
 ];
 
 // TODO: add plugins
