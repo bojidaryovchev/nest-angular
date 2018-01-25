@@ -1,21 +1,18 @@
 const path = require('path');
 const fs = require('fs');
+const nodeExternals = require('webpack-node-externals');
 const NodemonPlugin = require('nodemon-webpack-plugin');
+const ClosureCompilerPlugin = require('google-closure-compiler-js').webpack;
 
 const env = process.env.NODE_ENV || 'development';
 const dev = env === 'development';
-const nodeModules = {};
-
-fs.readdirSync('node_modules')
-  .filter(function(moduleName) {
-    return moduleName !== '.bin';
-  })
-  .forEach(function(moduleName) {
-    nodeModules[moduleName] = 'commonjs ' + moduleName;
-  });
-
 const plugins = [
-    new NodemonPlugin()
+    new NodemonPlugin(),
+    new ClosureCompilerPlugin({options: {
+        languageIn: 'ECMASCRIPT6',
+        languageOut: 'ECMASCRIPT5',
+        compilationLevel: 'SIMPLE'
+    }})
 ];
 
 // TODO: add plugins
@@ -28,7 +25,7 @@ module.exports = {
     },
     plugins: dev ? plugins : [],
     target: "node",
-    externals: nodeModules,
+    externals: [nodeExternals()],
     module: {
         rules: [
             {

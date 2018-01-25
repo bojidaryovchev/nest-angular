@@ -42,6 +42,7 @@
     "@types/passport-local": "^1.0.32",
     "codelyzer": "^4.1.0",
     "concurrently": "^3.5.1",
+    "google-closure-compiler-js": "^20180101.0.0",
     "jasmine-core": "^2.9.1",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^2.0.0",
@@ -58,7 +59,8 @@
     "tslint": "^5.9.1",
     "tslint-loader": "^3.5.3",
     "typescript": "^2.6.2",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
     "@angular/animations": "^5.2.1",
