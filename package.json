@@ -1,5 +1,5 @@
 {
-  "name": "node-express-mongodb-mongoose-overview",
+  "name": "nest-angular",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bojidaryovchev/angular-express-mongoose.git"
+    "url": "git+https://github.com/bojidaryovchev/nest-angular.git"
   },
   "author": "bojidaryovchev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bojidaryovchev/angular-express-mongoose/issues"
+    "url": "https://github.com/bojidaryovchev/nest-angular/issues"
   },
-  "homepage": "https://github.com/bojidaryovchev/angular-express-mongoose#readme",
+  "homepage": "https://github.com/bojidaryovchev/nest-angular#readme",
   "devDependencies": {
     "@angular/cli": "^1.6.5",
     "@angular/compiler-cli": "^5.2.1",
