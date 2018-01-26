@@ -23,6 +23,6 @@
     "node_modules"
   ],
   "include": [
-    "nest/**/*.ts",
+    "nest-server/**/*.ts",
   ]
 }
