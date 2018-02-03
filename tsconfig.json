@@ -1,7 +1,3 @@
-// our target is es5 so output code is in es5 syntax
-// default module for target es3 or es5 is commonjs
-// default moduleResolution for commonjs is node
-// so we can omit setting those properties
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
@@ -11,18 +7,17 @@
     "removeComments": true,
     "sourceMap": true,
     "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": [
-      "es2017",
-      "dom"
-    ]
+    "lib": [ "es2017" ]
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
-    "nest-server/**/*.ts",
+    "src/server/**/*.ts",
   ]
 }

@@ -12,9 +12,9 @@ const plugins = [
 ];
 
 // TODO: add plugins
-// ./nest/main.ts ./server/bin/www.ts
+
 module.exports = {
-    entry: path.resolve(__dirname, "./nest/main.ts"),
+    entry: path.resolve(__dirname, "./src/server/main.ts"),
     output: {
         path: path.resolve(__dirname, "./bin"), 
         filename: "server.bundle.js"
