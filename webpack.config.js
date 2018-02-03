@@ -6,10 +6,16 @@ const ClosureCompilerPlugin = require('google-closure-compiler-js').webpack;
 
 const env = process.env.NODE_ENV || 'development';
 const dev = env === 'development';
-const plugins = [
-    new NodemonPlugin(),
+
+// plugins
+const devPlugins = [
+    new NodemonPlugin()
+];
+const prodPlugins = [];
+const commonPlugins = [
     new ClosureCompilerPlugin({})
 ];
+const plugins = dev ? devPlugins.concat(commonPlugins) : prodPlugins.concat(commonPlugins);
 
 // TODO: add plugins
 
@@ -19,7 +25,7 @@ module.exports = {
         path: path.resolve(__dirname, "./bin"), 
         filename: "server.bundle.js"
     },
-    plugins: dev ? plugins : [],
+    plugins: plugins,
     target: "node",
     externals: [nodeExternals()],
     module: {
