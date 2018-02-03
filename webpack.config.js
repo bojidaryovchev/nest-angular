@@ -38,7 +38,10 @@ module.exports = {
             {
                 enforce: "pre",
                 test: /\.tsx?$/,
-                use: "tslint-loader",
+                loader: "tslint-loader",
+                options: {
+                    configFile: "./src/server/tslint.json"
+                },
                 exclude: /node_modules/,
             }
         ]
