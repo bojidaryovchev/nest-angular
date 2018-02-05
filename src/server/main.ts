@@ -1,10 +1,30 @@
+// polyfills
+import './polyfills';
+
+// angular
+import { enableProdMode } from '@angular/core';
+
+// nest
 import { NestFactory } from '@nestjs/core';
+
+// libs
+import * as e from 'express';
+import { readFileSync } from 'fs';
+import { join } from 'path';
+import { ngExpressEngine } from '@nguniversal/express-engine';
+
 import { ApplicationModule } from './app.module';
 import { Config } from './config/config';
-import * as e from 'express';
+import { FOLDER_DIST_BROWSER } from '../shared/constants';
 
 async function bootstrap() {
   const express = e();
+
+  if (process.env.NODE_ENV === 'production') {
+    enableProdMode();
+    renderServerSide(express);
+  }
+
   const app = await NestFactory.create(ApplicationModule, express);
 
   const env = process.env.NODE_ENV || 'development';
@@ -17,4 +37,17 @@ async function bootstrap() {
 
   await app.listen(config.port);
 }
+
+function renderServerSide(app: e.Application) {
+  const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../../dist/server/main.bundle.js');
+  const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
+
+  app.engine('html', ngExpressEngine({
+    bootstrap: AppServerModuleNgFactory,
+    providers: [
+      provideModuleMap(LAZY_MODULE_MAP)
+    ]
+  }));
+}
+
 bootstrap();

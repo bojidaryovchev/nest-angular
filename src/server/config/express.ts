@@ -6,6 +6,7 @@ import * as session from 'express-session';
 import { initialize, session as passportSession } from 'passport';
 import { IEnvironmentConfig } from './config';
 import { INestApplication } from '@nestjs/common/interfaces';
+import { FOLDER_DIST_BROWSER } from '../../shared/constants';
 
 module.exports = (config: IEnvironmentConfig, app: INestApplication, express: e.Application) => {
   express.disable('x-powered-by');
@@ -19,5 +20,8 @@ module.exports = (config: IEnvironmentConfig, app: INestApplication, express: e.
   }));
   app.use(initialize());
   app.use(passportSession());
-  app.use(e.static(join(config.rootPath, 'dist')));
+  // app.use(e.static(FOLDER_DIST_BROWSER));
+  app.set('view engine', 'html');
+  app.set('views', __dirname);
+  express.get('*.*', e.static(FOLDER_DIST_BROWSER));
 };

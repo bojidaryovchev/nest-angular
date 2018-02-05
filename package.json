@@ -16,7 +16,9 @@
     "build": "npm run build:client && npm run build:server",
     "watch:server": "webpack --w",
     "watch:client": "ng serve --proxy-config proxy.conf.json",
-    "dev": "concurrent \" npm run watch:server \" \" npm run watch:client \" "
+    "watch": "concurrent \" npm run watch:server \" \" npm run watch:client \" ",
+    "build:universal:browser-and-server": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
+    "build:universal": "npm run build:universal:browser-and-server && npm run build:server"
   },
   "repository": {
     "type": "git",
@@ -72,12 +74,15 @@
     "@angular/http": "^5.2.1",
     "@angular/platform-browser": "^5.2.1",
     "@angular/platform-browser-dynamic": "^5.2.1",
+    "@angular/platform-server": "^5.2.3",
     "@angular/router": "^5.2.1",
     "@nestjs/common": "^4.5.9",
     "@nestjs/core": "^4.5.10",
     "@nestjs/microservices": "^4.5.8",
     "@nestjs/testing": "^4.5.5",
     "@nestjs/websockets": "^4.5.8",
+    "@nguniversal/express-engine": "^5.0.0-beta.5",
+    "@nguniversal/module-map-ngfactory-loader": "^5.0.0-beta.5",
     "body-parser": "^1.18.2",
     "bootstrap": "^3.3.7",
     "cookie-parser": "^1.4.3",
