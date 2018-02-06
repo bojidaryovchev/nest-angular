@@ -20,7 +20,7 @@ async function bootstrap() {
   const env = process.env.NODE_ENV || 'development';
   const config = Config[env];
 
-  require('./config/database')(config);
+  // require('./config/database')(config);
   require('./config/express')(config, app, express);
   // require('./config/routes')(config, app);
   // require('./config/passport')();
