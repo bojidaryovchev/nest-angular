@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const nodeExternals = require('webpack-node-externals');
 const NodemonPlugin = require('nodemon-webpack-plugin');
-const ClosureCompilerPlugin = require('google-closure-compiler-js').webpack;
 
 const env = process.env.NODE_ENV || 'development';
 const dev = env === 'development';
@@ -12,9 +11,7 @@ const devPlugins = [
     new NodemonPlugin()
 ];
 const prodPlugins = [];
-const commonPlugins = [
-    new ClosureCompilerPlugin({})
-];
+const commonPlugins = [];
 const plugins = dev ? devPlugins.concat(commonPlugins) : prodPlugins.concat(commonPlugins);
 
 // TODO: add plugins
