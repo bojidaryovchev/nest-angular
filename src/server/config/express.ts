@@ -22,6 +22,6 @@ module.exports = (config: IEnvironmentConfig, app: INestApplication, express: e.
   app.use(passportSession());
   // app.use(e.static(FOLDER_DIST_BROWSER));
   app.set('view engine', 'html');
-  app.set('views', __dirname);
+  app.set('views', FOLDER_DIST_BROWSER);
   express.get('*.*', e.static(FOLDER_DIST_BROWSER));
 };
