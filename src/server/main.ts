@@ -1,21 +1,11 @@
-// polyfills
 import './polyfills';
 
-// angular
 import { enableProdMode } from '@angular/core';
-
-// nest
 import { NestFactory } from '@nestjs/core';
-
-// libs
 import * as e from 'express';
-import { readFileSync } from 'fs';
-import { join } from 'path';
 import { ngExpressEngine } from '@nguniversal/express-engine';
-
 import { ApplicationModule } from './app.module';
 import { Config } from './config/config';
-import { FOLDER_DIST_BROWSER } from '../shared/constants';
 
 async function bootstrap() {
   const express = e();
