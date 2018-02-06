@@ -19,7 +19,7 @@
     "watch": "concurrent \" npm run watch:server \" \" npm run watch:client \" ",
     "build:universal:browser-and-server": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
     "build:universal": "npm run build:universal:browser-and-server && npm run build:server",
-    "postinstall": "npm run build:universal"
+    "postinstall": "npm run build:universal:browser-and-server"
   },
   "repository": {
     "type": "git",
