@@ -36,6 +36,9 @@
     "npm": "5.6.0"
   },
   "devDependencies": {
+    "@angular/cli": "^1.6.5",
+    "@angular/compiler-cli": "^5.2.1",
+    "@angular/language-service": "^5.2.1",
     "@types/cookie-parser": "^1.4.1",
     "@types/express": "^4.11.0",
     "@types/express-session": "^1.15.6",
@@ -68,12 +71,9 @@
   },
   "dependencies": {
     "@angular/animations": "^5.2.1",
-    "@angular/cli": "^1.6.5",
     "@angular/common": "^5.2.1",
     "@angular/compiler": "^5.2.1",
-    "@angular/compiler-cli": "^5.2.1",
     "@angular/core": "^5.2.1",
-    "@angular/language-service": "^5.2.1",
     "@angular/forms": "^5.2.1",
     "@angular/http": "^5.2.1",
     "@angular/platform-browser": "^5.2.1",
