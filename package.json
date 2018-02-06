@@ -45,7 +45,6 @@
     "@types/passport-local": "^1.0.32",
     "codelyzer": "^4.1.0",
     "concurrently": "^3.5.1",
-    "google-closure-compiler-js": "^20180101.0.0",
     "jasmine-core": "^2.9.1",
     "jasmine-spec-reporter": "^4.2.1",
     "karma": "^2.0.0",
