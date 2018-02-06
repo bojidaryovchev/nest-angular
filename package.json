@@ -31,6 +31,10 @@
     "url": "https://github.com/bojidaryovchev/nest-angular/issues"
   },
   "homepage": "https://github.com/bojidaryovchev/nest-angular#readme",
+  "engines": {
+    "node": "9.1.0",
+    "npm": "5.6.0"
+  },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.1",
     "@types/express": "^4.11.0",
@@ -52,7 +56,6 @@
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "node-sass": "^4.7.2",
-    "nodemon-webpack-plugin": "^0.1.6",
     "protractor": "^5.2.2",
     "ts-loader": "^3.2.0",
     "ts-node": "^4.1.0",
@@ -88,6 +91,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "mongoose": "^4.13.9",
+    "nodemon-webpack-plugin": "^0.1.6",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "redis": "^2.8.0",
