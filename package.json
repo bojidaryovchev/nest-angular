@@ -31,10 +31,6 @@
     "url": "https://github.com/bojidaryovchev/nest-angular/issues"
   },
   "homepage": "https://github.com/bojidaryovchev/nest-angular#readme",
-  "engines": {
-    "node": "9.1.0",
-    "npm": "5.6.0"
-  },
   "devDependencies": {
     "@angular/cli": "^1.6.5",
     "@angular/compiler-cli": "^5.2.1",
