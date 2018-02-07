@@ -30,6 +30,7 @@
         "member-ordering": [
             false
         ],
+        "no-var-requires": false,
         "curly": false,
         "interface-name": [
             false
