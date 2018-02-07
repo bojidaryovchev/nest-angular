@@ -19,4 +19,15 @@ export class RecipesComponent implements OnInit {
     this.recipesService.getRecipes()
       .then((recipes: RecipeItem[]) => this.recipes = recipes);
   }
+
+  testApi() {
+    const request: XMLHttpRequest = new XMLHttpRequest();
+
+    request.onload = (e: Event) => {
+      console.log(e);
+    };
+
+    request.open('GET', 'api/getStuff', true);
+    request.send();
+  }
 }

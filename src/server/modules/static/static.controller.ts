@@ -4,7 +4,7 @@ import { join } from 'path';
 import { createReadStream } from 'fs';
 import * as e from 'express';
 
-@Controller('static')
+@Controller()
 export class StaticController {
   @Get('*')
   all(@Res() res: e.Response, @Req() req: e.Request) {
