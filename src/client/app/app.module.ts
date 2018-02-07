@@ -1,5 +1,6 @@
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_ID, Inject, PLATFORM_ID, NgModule } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 
 import { AppComponent } from './app.component';
@@ -39,4 +40,14 @@ import { SharedModule } from './shared/shared.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(APP_ID) private appId: string
+  ) {
+    const platform = isPlatformBrowser(platformId) ?
+      'in the browser' : 'on the server';
+
+    console.log(`Running ${platform} with appId=${appId}`);
+  }
+}
