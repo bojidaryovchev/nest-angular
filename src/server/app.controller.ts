@@ -8,6 +8,12 @@ import {FOLDER_DIST_BROWSER} from '../shared/constants';
 export class AppController {
   @Get('*')
   all(@Res() res: e.Response, @Req() req: e.Request) {
-    createReadStream(join(FOLDER_DIST_BROWSER, 'index.html')).pipe(res);
+    const index: string = join(FOLDER_DIST_BROWSER, 'index.html');
+
+    if (process.env.NODE_ENV === 'production') {
+      res.render(index, { req });
+    } else {
+      createReadStream(index).pipe(res);
+    }
   }
 }
