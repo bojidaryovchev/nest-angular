@@ -1,4 +1,4 @@
-import { Controller, Get, Response as Res, Request as Req } from '@nestjs/common';
+import { Controller, Get, Res, Req } from '@nestjs/common';
 import * as e from 'express';
 import {join} from 'path';
 import {createReadStream} from 'fs';
