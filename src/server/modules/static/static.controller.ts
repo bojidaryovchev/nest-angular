@@ -7,6 +7,6 @@ import * as e from 'express';
 export class StaticController {
   @Get('*')
   all(@Res() res: e.Response, @Req() req: e.Request) {
-      res.render(join(FOLDER_DIST_BROWSER, 'index.html'), { req });
+    res.render(join(FOLDER_DIST_BROWSER, 'index.html'), { req });
   }
 }
