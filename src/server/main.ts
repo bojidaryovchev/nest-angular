@@ -12,8 +12,9 @@ async function bootstrap() {
 
   if (process.env.NODE_ENV === 'production') {
     enableProdMode();
-    renderServerSide(express);
   }
+
+  renderServerSide(express);
 
   const app = await NestFactory.create(ApplicationModule, express);
 
