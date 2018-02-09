@@ -1,27 +1,21 @@
 import * as e from 'express';
 import { join } from 'path';
-import { json, urlencoded } from 'body-parser';
-import * as cookieParser from 'cookie-parser';
-import * as session from 'express-session';
-import { initialize, session as passportSession } from 'passport';
 import { IEnvironmentConfig } from './config';
-import { INestApplication } from '@nestjs/common/interfaces';
-import { FOLDER_DIST_BROWSER } from '../../shared/constants';
+import { FOLDER_DIST_BROWSER, FOLDER_DIST_SERVER } from '../../shared/constants';
+import { ngExpressEngine } from '@nguniversal/express-engine';
 
-module.exports = (config: IEnvironmentConfig, app: INestApplication, express: e.Application) => {
-  express.disable('x-powered-by');
-  app.use(cookieParser());
-  app.use(json());
-  app.use(urlencoded({ extended: true }));
-  app.use(session({
-    secret: config.sessionSecret,
-    resave: true,
-    saveUninitialized: true
+module.exports = (config: IEnvironmentConfig, express: e.Application) => {
+  const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('../../../dist/server/main.bundle.js');
+  const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
+
+  express.set('view engine', 'html');
+  express.set('views', FOLDER_DIST_BROWSER);
+  express.engine('html', ngExpressEngine({
+    bootstrap: AppServerModuleNgFactory,
+    providers: [
+      provideModuleMap(LAZY_MODULE_MAP)
+    ]
   }));
-  app.use(initialize());
-  app.use(passportSession());
-  // app.use(e.static(FOLDER_DIST_BROWSER));
-  app.set('view engine', 'html');
-  app.set('views', FOLDER_DIST_BROWSER);
   express.get('*.*', e.static(FOLDER_DIST_BROWSER));
+  express.disable('x-powered-by');
 };
