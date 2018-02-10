@@ -1,4 +1,5 @@
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_ID, Inject, PLATFORM_ID, NgModule } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -16,7 +17,7 @@ import { ServicesModule } from './services/services.module';
 import { GuardsModule } from './guards/guards.module';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { SharedModule } from './shared/shared.module';
-
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,8 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     BrowserModule.withServerTransition({ appId: 'nest-angular' }),
     BrowserTransferStateModule,
+    BrowserAnimationsModule,
+    MaterialModule,
     ServicesModule,
     SharedModule,
     GuardsModule
