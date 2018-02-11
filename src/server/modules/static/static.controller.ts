@@ -1,5 +1,5 @@
 import { Controller, Get, Req, Res } from '@nestjs/common';
-import { FOLDER_DIST_BROWSER } from '../../../shared/constants';
+import { FOLDER_DIST_BROWSER } from '../../../shared/shared.constants';
 import { join } from 'path';
 import * as e from 'express';
 

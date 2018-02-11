@@ -1,7 +1,7 @@
 import * as e from 'express';
 import { join } from 'path';
 import { IEnvironmentConfig } from './config';
-import { FOLDER_DIST_BROWSER, FOLDER_DIST_SERVER } from '../../shared/constants';
+import { FOLDER_DIST_BROWSER, FOLDER_DIST_SERVER } from '../../shared/shared.constants';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 
 module.exports = (config: IEnvironmentConfig, express: e.Application) => {
