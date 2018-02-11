@@ -6,6 +6,7 @@ interface ISection {
 }
 
 interface INav {
+  root: ISection;
   sections: ISection[];
 }
 
@@ -16,6 +17,7 @@ interface INav {
 })
 export class HeaderComponent implements OnInit {
   nav: INav = {
+    root: {title: 'Recipe Book', link: 'recipes'},
     sections: [
       {title: 'Recipes', link: 'recipes'},
       {title: 'Shopping List', link: 'shopping-list'}
