@@ -1,28 +1,30 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a [routerLink]="['recipes']" class="navbar-brand">Recipe Book</a>
-    </div>
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a [routerLink]="['recipes']" class="navbar-brand">Recipe Book</a>
+      </div>
 
-    <!-- navbar-default -->
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-          <a [routerLink]="['recipes']">Recipes</a></li>
-        <li routerLinkActive="active">
-          <a [routerLink]="['shopping-list']" >Shopping List</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown" appDropdown>
-          <a class="dropdown-toggle" role="button">
-            Manage <span class="caret caret-clean"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a>Save Data</a></li>
-            <li><a>Fetch Data</a></li>
-          </ul>
-        </li>
-      </ul>
+   
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li *ngFor="let section of nav.sections">
+            <a class="nav-section" [routerLink]="section.link" mat-ripple>
+              {{section.title}}
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown" appDropdown>
+            <a class="dropdown-toggle" role="button">
+              Manage <span class="caret caret-clean"></span>
+            </a>
+            <div class="dropdown-menu">
+              <mat-nav-list>
+                <mat-list-item>Save Data</mat-list-item>
+                <mat-list-item>Fetch Data</mat-list-item>
+              </mat-nav-list>
+            </div>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
