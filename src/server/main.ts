@@ -5,7 +5,8 @@ import { NestFactory } from '@nestjs/core';
 import * as e from 'express';
 
 import { ApplicationModule } from './app.module';
-import { Config } from './config/config';
+import { SERVER_CONFIG } from './server.constants';
+import { ValidationPipe } from './modules/common/pipes/validation.pipe';
 
 async function bootstrap() {
   const express = e();
@@ -14,14 +15,13 @@ async function bootstrap() {
     enableProdMode();
   }
 
-  const env = process.env.NODE_ENV || 'development';
-  const config = Config[env];
-
-  require('./config/index')(config, express);
+  require('./config/index')(SERVER_CONFIG, express);
 
   const app = await NestFactory.create(ApplicationModule, express);
 
-  await app.listen(config.port);
+  app.useGlobalPipes(new ValidationPipe());
+
+  await app.listen(SERVER_CONFIG.port);
 }
 
 bootstrap();

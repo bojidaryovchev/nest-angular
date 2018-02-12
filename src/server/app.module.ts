@@ -1,10 +1,18 @@
 import { Module } from '@nestjs/common';
 
-import { ApiModule } from './modules/api/api.module';
 import { StaticModule } from './modules/static/static.module';
+import { SERVER_CONFIG } from './server.constants';
+import { DatabaseModule } from './modules/database/database.module';
+import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
-  imports: [ApiModule, StaticModule],
+  imports: [
+    DatabaseModule,
+    AuthModule,
+    UserModule,
+    StaticModule
+  ],
   controllers: [],
   components: [],
 })
