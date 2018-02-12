@@ -14,7 +14,7 @@ export class AuthController {
   }
 
   @Post('signin')
-  async signIn(@Req() req: Request, @Body() createUserDto: CreateUserDto): Promise<IToken> {
+  async signIn(@Req() req: Request): Promise<IToken> {
     return await this.authService.signUserIn(req);
   }
 
