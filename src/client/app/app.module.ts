@@ -4,18 +4,18 @@ import { APP_ID, Inject, PLATFORM_ID, NgModule } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 
-import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { RecipesComponent } from './recipes/recipes.component';
-import { RecipesListComponent } from './recipes/recipes-list/recipes-list.component';
-import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
-import { RecipeItemComponent } from './recipes/recipes-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
+import { AppComponent } from './components/app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { RecipesComponent } from './components/recipes/recipes.component';
+import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
+import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
+import { RecipeDetailsComponent } from './components/recipes/recipe-details/recipe-details.component';
+import { RecipeItemComponent } from './components/recipes/recipes-list/recipe-item/recipe-item.component';
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
+import { ShoppingListEditComponent } from './components/shopping-list/shopping-list-edit/shopping-list-edit.component';
 import { AppRoutingModule } from './app.routing.module';
 import { ServicesModule } from './services/services.module';
 import { GuardsModule } from './guards/guards.module';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from './material/material.module';
 import { InterceptorsModule } from './interceptors/interceptors.module';

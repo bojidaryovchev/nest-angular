@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeItem } from './recipes-list/recipe-item/recipe-item.component';
-import { RecipesService } from './../services/recipes.service';
-import { AuthService } from '../services/auth.service';
+import { RecipesService } from '../../services/recipes.service';
+import { AuthService } from '../../services/auth.service';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({

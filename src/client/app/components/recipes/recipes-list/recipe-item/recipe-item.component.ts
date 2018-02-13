@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Ingredient } from '../../../shared/components/ingredient/ingredient.component';
+import { Ingredient } from '../../../../shared/components/ingredient/ingredient.component';
 
 export class RecipeItem {
   constructor(

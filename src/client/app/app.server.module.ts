@@ -3,7 +3,7 @@ import { ServerModule, ServerTransferStateModule } from '@angular/platform-serve
 import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
 
 import { AppModule } from './app.module';
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
 
 @NgModule({
   imports: [

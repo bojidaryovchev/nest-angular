@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { RecipesComponent } from './recipes/recipes.component';
-import { AppComponent } from './app.component';
-import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.component';
+import { RecipesComponent } from './components/recipes/recipes.component';
+import { AppComponent } from './components/app.component';
+import { RecipeDetailsComponent } from './components/recipes/recipe-details/recipe-details.component';
 import { CanDeactivateGuardService } from './guards/can-deactivate-guard.service';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
+import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 
 const appRoutes: Routes = [
   {
