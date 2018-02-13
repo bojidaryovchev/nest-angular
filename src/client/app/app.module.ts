@@ -18,6 +18,8 @@ import { GuardsModule } from './guards/guards.module';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { SharedModule } from './shared/shared.module';
 import { MaterialModule } from './material/material.module';
+import { InterceptorsModule } from './interceptors/interceptors.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,10 @@ import { MaterialModule } from './material/material.module';
     MaterialModule,
     ServicesModule,
     SharedModule,
-    GuardsModule
+    GuardsModule,
+    InterceptorsModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })
