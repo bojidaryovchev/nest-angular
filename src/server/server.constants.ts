@@ -10,5 +10,7 @@ export const USER_MODEL_TOKEN: string = 'UserModelToken';
 export const JWT_SECRET: string = 'this is a secret';
 
 export const MESSAGES = {
-  FORBIDDEN_EMAIL_IN_USE: 'The email already exists.'
+  FORBIDDEN_EMAIL_IN_USE: 'The email already exists',
+  UNAUTHORIZED_INVALID_PASSWORD: 'Invalid password',
+  UNAUTHORIZED_INVALID_EMAIL: 'The email does not exist'
 };
