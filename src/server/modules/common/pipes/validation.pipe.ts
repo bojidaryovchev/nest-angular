@@ -4,30 +4,20 @@ import {
   PipeTransform,
   ArgumentMetadata,
 } from '@nestjs/common';
-import { validate } from 'class-validator';
-import { plainToClass } from 'class-transformer';
+import { validate } from 'joi';
+import authSchema from '../../auth/schemas/auth.schema';
 
 @Pipe()
 export class ValidationPipe implements PipeTransform<any> {
   async transform(value: any, metadata: ArgumentMetadata): Promise<any> {
-    const { metatype } = metadata;
+    const result = validate(value, authSchema);
 
-    if (!metatype || !this.toValidate(metatype)) {
-      return value;
+    if (result.error) {
+      const message: string = result.error.details.shift().message;
+
+      throw new BadRequestException(message);
     }
 
-    const object = plainToClass(metatype, value);
-    const errors = await validate(object);
-
-    if (errors.length) {
-      throw new BadRequestException('Validation failed');
-    }
-
-    return value;
-  }
-
-  private toValidate(metatype: any): boolean {
-    const types = [String, Boolean, Number, Array, Object];
-    return !types.find(type => metatype === type);
+    return result.value;
   }
 }
