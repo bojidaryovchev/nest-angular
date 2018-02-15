@@ -13,8 +13,9 @@ export class LocalStrategy {
   }
 
   private init(): void {
-    use(new Strategy({
-      usernameField: 'email'
+    use('local', new Strategy({
+      usernameField: 'email',
+      passwordField: 'password'
     }, async (email: string, password: string, done: Function) => {
       try {
         const user: IUser = await User.findOne({ 'local.email': email });
