@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { validate } from 'joi';
 import authSchema from '../../auth/schemas/auth.schema';
+import { replace } from '../../../utilities/helpers';
 
 @Pipe()
 export class ValidationPipe implements PipeTransform<any> {
@@ -13,9 +14,10 @@ export class ValidationPipe implements PipeTransform<any> {
     const result = validate(value, authSchema);
 
     if (result.error) {
-      const message: string = result.error.details.shift().message;
+      const errorMessage = result.error.details.shift().message;
+      const message: string = replace(errorMessage, /["]/g, '');
 
-      throw new BadRequestException(message);
+      throw new BadRequestException(`Validation failed: ${message}`);
     }
 
     return result.value;
