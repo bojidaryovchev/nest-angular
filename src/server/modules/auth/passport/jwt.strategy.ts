@@ -1,9 +1,9 @@
 import { use } from 'passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { Component, HttpStatus } from '@nestjs/common';
+import { Component, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../auth.service';
 import { Request } from 'express';
-import { SERVER_CONFIG } from '../../../server.constants';
+import { SERVER_CONFIG, MESSAGES } from '../../../server.constants';
 
 @Component()
 export class JwtStrategy extends Strategy {
@@ -22,7 +22,7 @@ export class JwtStrategy extends Strategy {
   public async verify(req: Request, payload: any, done: Function) {
     const isValid = await this.authService.validateUser(payload);
     if (!isValid) {
-      return done(HttpStatus.UNAUTHORIZED, false);
+      return done(new UnauthorizedException(MESSAGES.UNAUTHORIZED_UNRECOGNIZED_BEARER), false);
     }
     done(null, payload);
   }
