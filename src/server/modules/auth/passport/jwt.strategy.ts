@@ -3,7 +3,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Component, HttpStatus } from '@nestjs/common';
 import { AuthService } from '../auth.service';
 import { Request } from 'express';
-import { JWT_SECRET } from '../../../server.constants';
+import { SERVER_CONFIG } from '../../../server.constants';
 
 @Component()
 export class JwtStrategy extends Strategy {
@@ -12,7 +12,7 @@ export class JwtStrategy extends Strategy {
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         passReqToCallback: true,
-        secretOrKey: JWT_SECRET,
+        secretOrKey: SERVER_CONFIG.jwtSecret,
       },
       async (req: Request, payload: any, next: Function) => await this.verify(req, payload, next),
     );

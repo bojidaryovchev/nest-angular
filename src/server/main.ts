@@ -6,7 +6,6 @@ import * as e from 'express';
 
 import { ApplicationModule } from './app.module';
 import { SERVER_CONFIG } from './server.constants';
-import { ValidationPipe } from './modules/common/pipes/validation.pipe';
 
 async function bootstrap() {
   const express: any = e();
@@ -20,7 +19,6 @@ async function bootstrap() {
   const app = await NestFactory.create(ApplicationModule, express);
 
   app.enableCors();
-  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(SERVER_CONFIG.port);
 }

@@ -9,6 +9,7 @@ import { LocalStrategy } from './passport/local.strategy';
 import { JwtStrategy } from './passport/jwt.strategy';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import { bodyValidatorMiddleware } from './middlewares/body-validator.middleware';
 
 @Module({
   imports: [],
@@ -23,7 +24,17 @@ import { AuthController } from './auth.controller';
 export class AuthModule implements NestModule {
   public configure(consumer: MiddlewaresConsumer) {
     consumer
-      .apply(authenticate('local', { session: false }))
+      .apply([
+        bodyValidatorMiddleware,
+        authenticate('local-signup', { session: false })
+      ])
+      .forRoutes({ path: 'api/auth/signup', method: RequestMethod.POST });
+
+    consumer
+      .apply([
+        bodyValidatorMiddleware,
+        authenticate('local-signin', { session: false })
+      ])
       .forRoutes({ path: 'api/auth/signin', method: RequestMethod.POST });
 
     consumer

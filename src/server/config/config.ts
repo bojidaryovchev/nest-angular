@@ -4,7 +4,7 @@ interface IEnvironmentConfig {
   rootPath: string;
   db: string;
   port: number;
-  sessionSecret: string;
+  jwtSecret: string;
 }
 
 interface IConfig {
@@ -20,13 +20,13 @@ const Config: IConfig = {
     rootPath,
     db: 'mongodb://localhost:27017/store',
     port: 1337,
-    sessionSecret: 'secret'
+    jwtSecret: 'secret'
   },
   production: {
     rootPath,
     db: process.env.MONGODB_CONNECTION,
     port: +process.env.PORT,
-    sessionSecret: process.env.SESSION_SECRET
+    jwtSecret: process.env.JWT_SECRET
   }
 };
 
