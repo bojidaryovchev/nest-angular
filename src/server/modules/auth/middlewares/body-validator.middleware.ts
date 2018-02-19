@@ -1,11 +1,11 @@
 import { ExpressMiddleware, BadRequestException } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { validate } from 'joi';
-import { authSchema } from '../schemas/auth.schema';
+import { authUserSchema } from '../../user/joi/auth-user.joi';
 
 export const bodyValidatorMiddleware: ExpressMiddleware =
   async (req: Request, res: Response, next: Function) => {
-    const result = validate(req.body, authSchema);
+    const result = validate(req.body, authUserSchema);
 
     if (result.error) {
       const errorMessage = result.error.details.shift().message;
