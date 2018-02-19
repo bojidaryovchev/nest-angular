@@ -9,7 +9,7 @@ import { SERVER_CONFIG } from './server.constants';
 import { ValidationPipe } from './modules/common/pipes/validation.pipe';
 
 async function bootstrap() {
-  const express = e();
+  const express: any = e();
 
   if (process.env.NODE_ENV === 'production') {
     enableProdMode();
