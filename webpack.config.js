@@ -44,6 +44,6 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [ ".ts", ".tsx" ]
+        extensions: [ ".ts" ]
     }
 }
