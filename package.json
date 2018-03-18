@@ -13,7 +13,7 @@
     "e2e": "ng e2e",
     "build:server": "webpack --progress --colors",
     "build:server:prod": "webpack -p --progress --colors",
-    "build": "npm run build:client && npm run build:server",
+    "build": "npm run build:universal && npm run build:server",
     "watch:server": "webpack --w --colors",
     "watch:client": "ng serve --proxy-config proxy.conf.json",
     "watch": "concurrent \" npm run watch:server \" \" npm run watch:client \" ",
