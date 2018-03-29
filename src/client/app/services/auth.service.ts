@@ -32,7 +32,11 @@ export class AuthService {
   }
 
   getToken(): string {
+    try {
     return localStorage.getItem('token');
+    } catch (e) {
+      return null;
+    }
   }
 
   isAuthenticated(): boolean {
