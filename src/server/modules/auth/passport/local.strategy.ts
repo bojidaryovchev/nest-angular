@@ -1,14 +1,17 @@
-import { Component, UnauthorizedException } from '@nestjs/common';
+import { Component, UnauthorizedException, Inject } from '@nestjs/common';
+import { Model } from 'mongoose';
 import { use } from 'passport';
 import { Strategy } from 'passport-local';
+
 import { IUser } from '../../user/interfaces/user.interface';
-import { User } from '../../user/models/user.model';
 import { generateHashedPassword, generateSalt } from '../../../utilities/encryption';
-import { MESSAGES } from '../../../server.constants';
+import { MESSAGES, USER_MODEL_TOKEN } from '../../../server.constants';
 
 @Component()
 export class LocalStrategy {
-  constructor() {
+  constructor(
+    @Inject(USER_MODEL_TOKEN) private readonly userModel: Model<IUser>
+  ) {
     this.init();
   }
 
@@ -18,12 +21,12 @@ export class LocalStrategy {
       passwordField: 'password'
     }, async (email: string, password: string, done: Function) => {
       try {
-        if (await User.findOne({ 'local.email': email })) {
+        if (await this.userModel.findOne({ 'local.email': email })) {
           return done(new UnauthorizedException(MESSAGES.UNAUTHORIZED_EMAIL_IN_USE), false);
         }
 
         const salt: string = generateSalt();
-        const user: IUser = new User({
+        const user: IUser = new this.userModel({
           method: 'local',
           local: {
             email,
@@ -45,7 +48,7 @@ export class LocalStrategy {
       passwordField: 'password'
     }, async (email: string, password: string, done: Function) => {
       try {
-        const user: IUser = await User.findOne({ 'local.email': email });
+        const user: IUser = await this.userModel.findOne({ 'local.email': email });
 
         if (!user) {
           return done(new UnauthorizedException(MESSAGES.UNAUTHORIZED_INVALID_EMAIL), false);

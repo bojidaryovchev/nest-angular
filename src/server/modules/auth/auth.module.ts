@@ -5,14 +5,16 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { authenticate } from 'passport';
+
+import { UserModule } from '../user/user.module';
+import { AuthService } from './auth.service';
 import { LocalStrategy } from './passport/local.strategy';
 import { JwtStrategy } from './passport/jwt.strategy';
-import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { bodyValidatorMiddleware } from './middlewares/body-validator.middleware';
 
 @Module({
-  imports: [],
+  imports: [UserModule],
   components: [
     AuthService,
     LocalStrategy,

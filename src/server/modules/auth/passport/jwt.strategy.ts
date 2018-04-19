@@ -1,8 +1,9 @@
+import { Component, UnauthorizedException } from '@nestjs/common';
+import { Request } from 'express';
 import { use } from 'passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { Component, UnauthorizedException } from '@nestjs/common';
+
 import { AuthService } from '../auth.service';
-import { Request } from 'express';
 import { SERVER_CONFIG, MESSAGES } from '../../../server.constants';
 
 @Component()
