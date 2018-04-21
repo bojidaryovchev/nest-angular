@@ -10,9 +10,9 @@ import { AngularUniversalModule } from './modules/angular-universal/angular-univ
 @Module({
   imports: [
     DatabaseModule,
-    AngularUniversalModule.forRoot(),
     AuthModule,
-    UserModule
+    UserModule,
+    AngularUniversalModule.forRoot()
   ],
   controllers: [],
   components: [],
