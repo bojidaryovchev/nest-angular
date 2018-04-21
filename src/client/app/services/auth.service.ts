@@ -27,6 +27,18 @@ export class AuthService {
     });
   }
 
+  requestFacebookRedirectUri(): Observable<any> {
+    return this.httpClient.get('api/auth/facebook/uri');
+  }
+
+  requestFacebookAccessToken(code: string): Observable<any> {
+    return this.httpClient.post('api/auth/facebook/token', { code });
+  }
+
+  facebookSignIn(access_token: string) {
+    return this.httpClient.post('api/auth/facebook/signin', { access_token });
+  }
+
   getProtected(): Observable<any> {
     return this.httpClient.get(`api/auth/authorized`);
   }
