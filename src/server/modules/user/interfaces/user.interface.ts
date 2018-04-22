@@ -16,4 +16,9 @@ export interface IUser extends Document {
     id: string,
     email: string
   };
+  twitter: {
+    id: string;
+    username: string;
+    displayName: string;
+  };
 }

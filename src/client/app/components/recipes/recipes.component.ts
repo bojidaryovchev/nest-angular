@@ -35,13 +35,27 @@ export class RecipesComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
       if (Object.keys(params).length) {
-        this.authService.requestFacebookAccessToken(params.code)
-          .subscribe((params: Params) => {
-            this.authService.facebookSignIn(params.access_token)
-              .subscribe((params: Params) => {
-                this.router.navigate(['/']);
-              });
-          });
+        // Facebook Login
+        if (params.code) {
+          this.authService.requestFacebookAccessToken(params.code)
+            .subscribe((params: Params) => {
+              this.authService.facebookSignIn(params.access_token)
+                .subscribe((params: Params) => {
+                  this.router.navigate(['/']);
+                });
+            });
+        }
+
+        // Twitter Login
+        if (params.oauth_token && params.oauth_verifier) {
+          this.authService.requestTwitterAccessToken(params.oauth_token, params.oauth_verifier)
+            .subscribe((params: Params) => {
+              this.authService.twitterSignIn(params.oauth_token, params.oauth_token_secret, params.user_id)
+                .subscribe((params: Params) => {
+                  this.router.navigate(['/']);
+                });
+            });
+        }
       }
     });
 
@@ -77,6 +91,13 @@ export class RecipesComponent implements OnInit {
 
   facebookLogin() {
     this.authService.requestFacebookRedirectUri()
+      .subscribe((response: {redirect_uri: string}) => {
+        window.location.replace(response.redirect_uri);
+      });
+  }
+
+  twitterLogin() {
+    this.authService.requestTwitterRedirectUri()
       .subscribe((response: {redirect_uri: string}) => {
         window.location.replace(response.redirect_uri);
       });

@@ -3,11 +3,11 @@ import { Schema } from 'mongoose';
 export const UserSchema: Schema = new Schema({
   method: {
     type: String,
-    enum: ['local', 'google', 'facebook'],
+    enum: ['local', 'google', 'facebook', 'twitter'],
     required: true
   },
   local: {
-    email: {type: String, lowercase: true, unique: true},
+    email: {type: String, lowercase: true, unique: true, sparse: true},
     salt: String,
     hashedPassword: String
   },
@@ -18,5 +18,10 @@ export const UserSchema: Schema = new Schema({
   facebook: {
     id: String,
     email: String
+  },
+  twitter: {
+    id: String,
+    username: String,
+    displayName: String
   }
 });

@@ -39,6 +39,22 @@ export class AuthService {
     return this.httpClient.post('api/auth/facebook/signin', { access_token });
   }
 
+  requestTwitterRedirectUri(): Observable<any> {
+    return this.httpClient.get('api/auth/twitter/uri');
+  }
+
+  requestTwitterAccessToken(oauth_token: string, oauth_verifier: string): Observable<any> {
+    return this.httpClient.post('api/auth/twitter/token', { oauth_token, oauth_verifier });
+  }
+
+  twitterSignIn(oauth_token: string, oauth_token_secret: string, user_id: string): Observable<any> {
+    return this.httpClient.post('api/auth/twitter/signin', {
+      oauth_token,
+      oauth_token_secret, 
+      user_id
+    });
+  }
+
   getProtected(): Observable<any> {
     return this.httpClient.get(`api/auth/authorized`);
   }

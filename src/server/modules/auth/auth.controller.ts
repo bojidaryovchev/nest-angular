@@ -32,6 +32,21 @@ export class AuthController {
     return await this.authService.createToken(req.user);
   }
 
+  @Get('twitter/uri')
+  async requestTwitterRedirectUri(): Promise<any> {
+    return await this.authService.requestTwitterRedirectUri();
+  }
+
+  @Post('twitter/token')
+  async requestTwitterAccessToken(@Req() req: Request): Promise<any> {
+    return await this.authService.requestTwitterAccessToken(req.body.oauth_token, req.body.oauth_verifier);
+  }
+
+  @Post('twitter/signin')
+  async twitterSignIn(@Req() req: Request): Promise<IToken> {
+    return await this.authService.createToken(req.user);
+  }
+
   @Get('authorized')
   public async authorized() {
     console.log('Authorized route...');

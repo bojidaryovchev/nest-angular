@@ -14,6 +14,7 @@ import { JwtStrategy } from './passport/jwt.strategy';
 import { FacebookStrategy } from './passport/facebook.strategy';
 import { AuthController } from './auth.controller';
 import { bodyValidatorMiddleware } from './middlewares/body-validator.middleware';
+import { TwitterStrategy } from './passport/twitter.strategy';
 
 
 @Module({
@@ -23,7 +24,8 @@ import { bodyValidatorMiddleware } from './middlewares/body-validator.middleware
     AuthService,
     LocalStrategy,
     JwtStrategy,
-    FacebookStrategy
+    FacebookStrategy,
+    TwitterStrategy
   ],
   controllers: [AuthController],
   exports: [AuthService]
@@ -47,6 +49,10 @@ export class AuthModule implements NestModule {
     consumer
       .apply(authenticate('facebook', { session: false }))
       .forRoutes({ path: 'api/auth/facebook/signin', method: RequestMethod.POST });
+
+    consumer
+      .apply(authenticate('twitter', { session: false }))
+      .forRoutes({ path: 'api/auth/twitter/signin', method: RequestMethod.POST });
 
     consumer
       .apply(authenticate('jwt', { session: false }))
