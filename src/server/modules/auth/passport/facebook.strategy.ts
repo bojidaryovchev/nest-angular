@@ -1,15 +1,18 @@
 import { Component, Inject } from '@nestjs/common';
+import { Model } from 'mongoose';
 import { use } from 'passport';
 
-import { FACEBOOK_CONFIG_TOKEN } from '../../../server.constants';
+import { FACEBOOK_CONFIG_TOKEN, USER_MODEL_TOKEN } from '../../../server.constants';
 import { IFacebookConfig } from '../interfaces/facebook-config.interface';
+import { IUser } from '../../user/interfaces/user.interface';
 
 const FacebookTokenStrategy = require('passport-facebook-token');
 
 @Component()
 export class FacebookStrategy {
   constructor(
-    @Inject(FACEBOOK_CONFIG_TOKEN) private readonly fbConfig: IFacebookConfig
+    @Inject(FACEBOOK_CONFIG_TOKEN) private readonly fbConfig: IFacebookConfig,
+    @Inject(USER_MODEL_TOKEN) private readonly userModel: Model<IUser>
   ) {
     this.init();
   }
@@ -18,8 +21,27 @@ export class FacebookStrategy {
     use('facebook', new FacebookTokenStrategy({
       clientID: this.fbConfig.client_id,
       clientSecret: this.fbConfig.client_secret
-    }, function(accessToken: string, refreshToken: string, profile: any, done: Function) {
-      console.log(profile);
-    }))
+    }, async (accessToken: string, refreshToken: string, profile: any, done: Function) => {
+      try {
+        const existingUser: IUser = await this.userModel.findOne({ 'facebook.id': profile.id });
+
+        if (existingUser) {
+          return done(null, existingUser);
+        }
+
+        const email: string = profile.emails.shift().value;
+        const user: IUser = new this.userModel({
+          method: 'facebook',
+          facebook: {
+            email,
+            id: profile.id
+          }
+        });
+
+        done(null, await user.save());
+      } catch (err) {
+        done(err, null);
+      }
+    }));
   }
 }

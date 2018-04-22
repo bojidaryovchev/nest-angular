@@ -7,10 +7,9 @@ export const UserSchema: Schema = new Schema({
     required: true
   },
   local: {
-    email: {type: String, lowercase: true, required: true, unique: true},
+    email: {type: String, lowercase: true, unique: true},
     salt: String,
-    hashedPassword: String,
-    roles: [String]
+    hashedPassword: String
   },
   google: {
     id: String,
