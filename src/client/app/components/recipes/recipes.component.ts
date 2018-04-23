@@ -44,10 +44,8 @@ export class RecipesComponent implements OnInit {
                   this.router.navigate(['/']);
                 });
             });
-        }
-
-        // Twitter Login
-        if (params.oauth_token && params.oauth_verifier) {
+        } else if (params.oauth_token && params.oauth_verifier) {
+          // Twitter Login
           this.authService.requestTwitterAccessToken(params.oauth_token, params.oauth_verifier)
             .subscribe((params: Params) => {
               this.authService.twitterSignIn(params.oauth_token, params.oauth_token_secret, params.user_id)
@@ -55,16 +53,14 @@ export class RecipesComponent implements OnInit {
                   this.router.navigate(['/']);
                 });
             });
-        }
-
-        // Google Login
-        if (params.code) {
+        } else if (params.code) {
+          // Google Login
           this.authService.requestGoogleAccessToken(params.code)
             .subscribe((params: Params) => {
               this.authService.googleSignIn(params.access_token)
                 .subscribe((params: Params) => {
                   this.router.navigate(['/']);
-                })
+                });
             });
         }
       }
