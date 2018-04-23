@@ -11,6 +11,7 @@
             true,
             "Function"
         ],
+        "no-shadowed-variable": false,
         "eofline": false,
         "quotemark": [
             true,

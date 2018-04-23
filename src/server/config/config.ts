@@ -5,6 +5,8 @@ interface IEnvironmentConfig {
   db: string;
   port: number;
   jwtSecret: string;
+  origin: string;
+  protocol: string;
 }
 
 interface IConfig {
@@ -20,13 +22,17 @@ const Config: IConfig = {
     rootPath,
     db: 'mongodb://localhost:27017/store',
     port: 1337,
-    jwtSecret: 'secret'
+    jwtSecret: 'secret',
+    origin: 'localhost',
+    protocol: 'http'
   },
   production: {
     rootPath,
     db: process.env.MONGODB_CONNECTION,
     port: +process.env.PORT,
-    jwtSecret: process.env.JWT_SECRET
+    jwtSecret: process.env.JWT_SECRET,
+    origin: process.env.ORIGIN,
+    protocol: process.env.PROTOCOL
   }
 };
 

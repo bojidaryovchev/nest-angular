@@ -37,30 +37,21 @@ export class RecipesComponent implements OnInit {
       if (Object.keys(params).length) {
         // Facebook Login
         if (params.code && params.state) {
-          this.authService.requestFacebookAccessToken(params.code)
+          this.authService.facebookSignIn(params.code)
             .subscribe((params: Params) => {
-              this.authService.facebookSignIn(params.access_token)
-                .subscribe((params: Params) => {
-                  this.router.navigate(['/']);
-                });
+              this.router.navigate(['/']);
             });
         } else if (params.oauth_token && params.oauth_verifier) {
           // Twitter Login
-          this.authService.requestTwitterAccessToken(params.oauth_token, params.oauth_verifier)
+          this.authService.twitterSignIn(params.oauth_token, params.oauth_verifier)
             .subscribe((params: Params) => {
-              this.authService.twitterSignIn(params.oauth_token, params.oauth_token_secret, params.user_id)
-                .subscribe((params: Params) => {
-                  this.router.navigate(['/']);
-                });
+              this.router.navigate(['/']);
             });
         } else if (params.code) {
           // Google Login
-          this.authService.requestGoogleAccessToken(params.code)
+          this.authService.googleSignIn(params.code)
             .subscribe((params: Params) => {
-              this.authService.googleSignIn(params.access_token)
-                .subscribe((params: Params) => {
-                  this.router.navigate(['/']);
-                });
+              this.router.navigate(['/']);
             });
         }
       }

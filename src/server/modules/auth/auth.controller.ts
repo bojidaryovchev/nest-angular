@@ -7,13 +7,13 @@ import { Request } from 'express';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('signup')
-  async signUp(@Req() req: Request): Promise<IToken> {
+  @Post('local/signup')
+  async requestJsonWebTokenAfterLocalSignUp(@Req() req: Request): Promise<IToken> {
     return await this.authService.createToken(req.user);
   }
 
-  @Post('signin')
-  async signIn(@Req() req: Request): Promise<IToken> {
+  @Post('local/signin')
+  async requestJsonWebTokenAfterLocalSignIn(@Req() req: Request): Promise<IToken> {
     return await this.authService.createToken(req.user);
   }
 
@@ -22,13 +22,13 @@ export class AuthController {
     return await this.authService.requestFacebookRedirectUri();
   }
 
-  @Post('facebook/token')
-  async requestFacebookAccessToken(@Req() req: Request): Promise<IToken> {
-    return await this.authService.requestFacebookAccessToken(req.body.code);
+  @Post('facebook/signin')
+  async facebookSignIn(@Req() req: Request): Promise<IToken> {
+    return await this.authService.facebookSignIn(req.body.code);
   }
 
-  @Post('facebook/signin')
-  async facebookSignIn(@Req() req: Request): Promise<any> {
+  @Post('facebook/token')
+  async requestJsonWebTokenAfterFacebookSignIn(@Req() req: Request): Promise<IToken> {
     return await this.authService.createToken(req.user);
   }
 
@@ -37,13 +37,13 @@ export class AuthController {
     return await this.authService.requestTwitterRedirectUri();
   }
 
-  @Post('twitter/token')
-  async requestTwitterAccessToken(@Req() req: Request): Promise<any> {
-    return await this.authService.requestTwitterAccessToken(req.body.oauth_token, req.body.oauth_verifier);
+  @Post('twitter/signin')
+  async twitterSignIn(@Req() req: Request): Promise<any> {
+    return await this.authService.twitterSignIn(req.body.oauth_token, req.body.oauth_verifier);
   }
 
-  @Post('twitter/signin')
-  async twitterSignIn(@Req() req: Request): Promise<IToken> {
+  @Post('twitter/token')
+  async requestJsonWebTokenAfterTwitterSignIn(@Req() req: Request): Promise<IToken> {
     return await this.authService.createToken(req.user);
   }
 
@@ -52,13 +52,13 @@ export class AuthController {
     return await this.authService.requestGoogleRedirectUri();
   }
 
-  @Post('google/token')
-  async requestGoogleAccessToken(@Req() req: Request): Promise<any> {
-    return await this.authService.requestGoogleAccessToken(req.body.code);
+  @Post('google/signin')
+  async googleSignIn(@Req() req: Request): Promise<any> {
+    return await this.authService.googleSignIn(req.body.code);
   }
 
-  @Post('google/signin')
-  async googleSignIn(@Req() req: Request): Promise<IToken> {
+  @Post('google/token')
+  async requestJsonWebTokenAfterGoogleSignIn(@Req() req: Request): Promise<IToken> {
     return await this.authService.createToken(req.user);
   }
 

@@ -40,26 +40,26 @@ export class AuthModule implements NestModule {
         bodyValidatorMiddleware,
         authenticate('local-signup', { session: false })
       ])
-      .forRoutes({ path: 'api/auth/signup', method: RequestMethod.POST });
+      .forRoutes({ path: 'api/auth/local/signup', method: RequestMethod.POST });
 
     consumer
       .apply([
         bodyValidatorMiddleware,
         authenticate('local-signin', { session: false })
       ])
-      .forRoutes({ path: 'api/auth/signin', method: RequestMethod.POST });
+      .forRoutes({ path: 'api/auth/local/signin', method: RequestMethod.POST });
 
     consumer
       .apply(authenticate('facebook', { session: false }))
-      .forRoutes({ path: 'api/auth/facebook/signin', method: RequestMethod.POST });
+      .forRoutes({ path: 'api/auth/facebook/token', method: RequestMethod.POST });
 
     consumer
       .apply(authenticate('twitter', { session: false }))
-      .forRoutes({ path: 'api/auth/twitter/signin', method: RequestMethod.POST });
+      .forRoutes({ path: 'api/auth/twitter/token', method: RequestMethod.POST });
 
     consumer
       .apply(authenticate('google', { session: false }))
-      .forRoutes({ path: 'api/auth/google/signin', method: RequestMethod.POST });
+      .forRoutes({ path: 'api/auth/google/token', method: RequestMethod.POST });
 
     consumer
       .apply(authenticate('jwt', { session: false }))

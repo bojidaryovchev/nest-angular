@@ -18,12 +18,16 @@ import { IGoogleConfig } from './interfaces/google-config.interface';
 
 @Component()
 export class AuthService {
+  private url: string;
+
   constructor(
     @Inject(USER_MODEL_TOKEN) private readonly userModel: Model<IUser>,
     @Inject(FACEBOOK_CONFIG_TOKEN) private readonly fbConfig: IFacebookConfig,
     @Inject(TWITTER_CONFIG_TOKEN) private readonly twitterConfig: ITwitterConfig,
     @Inject(GOOGLE_CONFIG_TOKEN) private readonly googleConfig: IGoogleConfig
-  ) {}
+  ) {
+    this.url = `${SERVER_CONFIG.protocol}://${SERVER_CONFIG.origin}:${SERVER_CONFIG.port}`;
+  }
 
   async createToken(user: IUser): Promise<IToken> {
     const expiresIn: string = '48h';
@@ -59,7 +63,7 @@ export class AuthService {
     };
   }
 
-  async requestFacebookAccessToken(code: string): Promise<any> {
+  async facebookSignIn(code: string): Promise<any> {
     const queryParams: string[] = [
       `client_id=${this.fbConfig.client_id}`,
       `redirect_uri=${this.fbConfig.oauth_redirect_uri}`,
@@ -78,7 +82,27 @@ export class AuthService {
           return reject(body.error);
         }
 
-        resolve(body);
+        const { access_token } = JSON.parse(body);
+
+        post({
+          url: `${this.url}/api/auth/facebook/token`,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          form: {
+            access_token
+          }
+        }, async (err: Error, res: Response, body: any) => {
+          if (err) {
+            return reject(err);
+          }
+
+          if (body.error) {
+            return reject(body.error);
+          }
+
+          resolve(body);
+        });
       });
     });
   }
@@ -111,7 +135,7 @@ export class AuthService {
     });
   }
 
-  async requestTwitterAccessToken(oauth_token: string, oauth_verifier: string): Promise<any> {
+  async twitterSignIn(oauth_token: string, oauth_verifier: string): Promise<any> {
     return new Promise((resolve: Function, reject: Function) => {
       post({
         url: this.twitterConfig.access_token_uri,
@@ -130,7 +154,29 @@ export class AuthService {
           return reject(body.error);
         }
 
-        resolve(this.parseTwitterResponse(body));
+        const { oauth_token, oauth_token_secret, user_id } = this.parseTwitterResponse(body);
+
+        post({
+          url: `${this.url}/api/auth/twitter/token`,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          form: {
+            oauth_token,
+            oauth_token_secret,
+            user_id
+          }
+        }, async (err: Error, res: Response, body: any) => {
+          if (err) {
+            return reject(err);
+          }
+
+          if (body.error) {
+            return reject(body.error);
+          }
+
+          resolve(body);
+        });
       });
     });
   }
@@ -149,7 +195,7 @@ export class AuthService {
     };
   }
 
-  async requestGoogleAccessToken(code: string): Promise<any> {
+  async googleSignIn(code: string): Promise<any> {
     return new Promise((resolve: Function, reject: Function) => {
       post({
         url: this.googleConfig.access_token_uri,
@@ -172,7 +218,27 @@ export class AuthService {
           return reject(body.error);
         }
 
-        resolve(body);
+        const { access_token } = JSON.parse(body);
+
+        post({
+          url: `${this.url}/api/auth/google/token`,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          form: {
+            access_token
+          }
+        }, async (err: Error, res: Response, body: any) => {
+          if (err) {
+            return reject(err);
+          }
+
+          if (body.error) {
+            return reject(body.error);
+          }
+
+          resolve(body);
+        });
       });
     });
   }
