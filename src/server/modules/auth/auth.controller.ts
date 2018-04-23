@@ -47,6 +47,21 @@ export class AuthController {
     return await this.authService.createToken(req.user);
   }
 
+  @Get('google/uri')
+  async requestGoogleRedirectUri(): Promise<any> {
+    return await this.authService.requestGoogleRedirectUri();
+  }
+
+  @Post('google/token')
+  async requestGoogleAccessToken(@Req() req: Request): Promise<any> {
+    return await this.authService.requestGoogleAccessToken(req.body.code);
+  }
+
+  @Post('google/signin')
+  async googleSignIn(@Req() req: Request): Promise<IToken> {
+    return await this.authService.createToken(req.user);
+  }
+
   @Get('authorized')
   public async authorized() {
     console.log('Authorized route...');

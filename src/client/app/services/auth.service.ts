@@ -55,6 +55,18 @@ export class AuthService {
     });
   }
 
+  requestGoogleRedirectUri(): Observable<any> {
+    return this.httpClient.get('api/auth/google/uri');
+  }
+
+  requestGoogleAccessToken(code: string): Observable<any> {
+    return this.httpClient.post('api/auth/google/token', { code });
+  }
+
+  googleSignIn(access_token: string): Observable<any> {
+    return this.httpClient.post('api/auth/google/signin', { access_token });
+  }
+
   getProtected(): Observable<any> {
     return this.httpClient.get(`api/auth/authorized`);
   }

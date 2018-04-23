@@ -3,11 +3,18 @@ import { Model } from 'mongoose';
 import { sign } from 'jsonwebtoken';
 import { get, post, Response } from 'request';
 
-import { SERVER_CONFIG, USER_MODEL_TOKEN, FACEBOOK_CONFIG_TOKEN, TWITTER_CONFIG_TOKEN } from '../../server.constants';
+import {
+  SERVER_CONFIG,
+  USER_MODEL_TOKEN,
+  FACEBOOK_CONFIG_TOKEN,
+  TWITTER_CONFIG_TOKEN,
+  GOOGLE_CONFIG_TOKEN
+} from '../../server.constants';
 import { IUser } from '../user/interfaces/user.interface';
 import { IToken } from './interfaces/token.interface';
 import { IFacebookConfig } from './interfaces/facebook-config.interface';
 import { ITwitterConfig } from './interfaces/twitter-config.interface';
+import { IGoogleConfig } from './interfaces/google-config.interface';
 
 @Component()
 export class AuthService {
@@ -15,6 +22,7 @@ export class AuthService {
     @Inject(USER_MODEL_TOKEN) private readonly userModel: Model<IUser>,
     @Inject(FACEBOOK_CONFIG_TOKEN) private readonly fbConfig: IFacebookConfig,
     @Inject(TWITTER_CONFIG_TOKEN) private readonly twitterConfig: ITwitterConfig,
+    @Inject(GOOGLE_CONFIG_TOKEN) private readonly googleConfig: IGoogleConfig
   ) {}
 
   async createToken(user: IUser): Promise<IToken> {
@@ -127,20 +135,62 @@ export class AuthService {
     });
   }
 
+  async requestGoogleRedirectUri(): Promise<{ redirect_uri: string } | any> {
+    const queryParams: string[] = [
+      `client_id=${this.googleConfig.client_id}`,
+      `redirect_uri=${this.googleConfig.oauth_redirect_uri}`,
+      `response_type=${this.googleConfig.response_type}`,
+      `scope=${this.googleConfig.scopes.join(' ')}`
+    ];
+    const redirect_uri: string = `${this.googleConfig.login_dialog_uri}?${queryParams.join('&')}`;
+
+    return {
+      redirect_uri
+    };
+  }
+
+  async requestGoogleAccessToken(code: string): Promise<any> {
+    return new Promise((resolve: Function, reject: Function) => {
+      post({
+        url: this.googleConfig.access_token_uri,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        form: {
+          code,
+          client_id: this.googleConfig.client_id,
+          client_secret: this.googleConfig.client_secret,
+          redirect_uri: this.googleConfig.oauth_redirect_uri,
+          grant_type: this.googleConfig.grant_type
+        }
+      }, async (err: Error, res: Response, body: any) => {
+        if (err) {
+          return reject(err);
+        }
+
+        if (body.error) {
+          return reject(body.error);
+        }
+
+        resolve(body);
+      });
+    });
+  }
+
   private parseTwitterResponse(response: string): {[key: string]: string | boolean} {
     const regex: RegExp = /([a-z_]+?)=([a-zA-Z0-9_-]+)/g;
     const parsedResponse: {[key: string]: string} = {};
 
     let match: RegExpMatchArray = regex.exec(response);
-    
+
     while (match) {
       match.shift();
-  
+
       parsedResponse[match.shift()] = match.shift();
-  
+
       match = regex.exec(response);
     }
-  
+
     return parsedResponse;
   }
 }

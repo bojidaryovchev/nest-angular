@@ -6,16 +6,18 @@ import {
 } from '@nestjs/common';
 import { authenticate } from 'passport';
 
-import { UserModule } from '../user/user.module';
-import { authProviders } from './auth.providers';
-import { AuthService } from './auth.service';
+// Strategies
 import { LocalStrategy } from './passport/local.strategy';
 import { JwtStrategy } from './passport/jwt.strategy';
 import { FacebookStrategy } from './passport/facebook.strategy';
+import { TwitterStrategy } from './passport/twitter.strategy';
+import { GoogleStrategy } from './passport/google-plus.strategy';
+
+import { UserModule } from '../user/user.module';
+import { authProviders } from './auth.providers';
+import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { bodyValidatorMiddleware } from './middlewares/body-validator.middleware';
-import { TwitterStrategy } from './passport/twitter.strategy';
-
 
 @Module({
   imports: [UserModule],
@@ -25,7 +27,8 @@ import { TwitterStrategy } from './passport/twitter.strategy';
     LocalStrategy,
     JwtStrategy,
     FacebookStrategy,
-    TwitterStrategy
+    TwitterStrategy,
+    GoogleStrategy
   ],
   controllers: [AuthController],
   exports: [AuthService]
@@ -53,6 +56,10 @@ export class AuthModule implements NestModule {
     consumer
       .apply(authenticate('twitter', { session: false }))
       .forRoutes({ path: 'api/auth/twitter/signin', method: RequestMethod.POST });
+
+    consumer
+      .apply(authenticate('google', { session: false }))
+      .forRoutes({ path: 'api/auth/google/signin', method: RequestMethod.POST });
 
     consumer
       .apply(authenticate('jwt', { session: false }))

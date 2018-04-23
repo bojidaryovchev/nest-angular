@@ -9,12 +9,13 @@ export interface IUser extends Document {
     roles: string[];
   };
   google: {
-    id: string,
-    email: string
+    id: string;
+    email: string;
+    displayName: string;
   };
   facebook: {
-    id: string,
-    email: string
+    id: string;
+    email: string;
   };
   twitter: {
     id: string;

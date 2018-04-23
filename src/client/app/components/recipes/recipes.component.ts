@@ -36,7 +36,7 @@ export class RecipesComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => {
       if (Object.keys(params).length) {
         // Facebook Login
-        if (params.code) {
+        if (params.code && params.state) {
           this.authService.requestFacebookAccessToken(params.code)
             .subscribe((params: Params) => {
               this.authService.facebookSignIn(params.access_token)
@@ -54,6 +54,17 @@ export class RecipesComponent implements OnInit {
                 .subscribe((params: Params) => {
                   this.router.navigate(['/']);
                 });
+            });
+        }
+
+        // Google Login
+        if (params.code) {
+          this.authService.requestGoogleAccessToken(params.code)
+            .subscribe((params: Params) => {
+              this.authService.googleSignIn(params.access_token)
+                .subscribe((params: Params) => {
+                  this.router.navigate(['/']);
+                })
             });
         }
       }
@@ -98,6 +109,13 @@ export class RecipesComponent implements OnInit {
 
   twitterLogin() {
     this.authService.requestTwitterRedirectUri()
+      .subscribe((response: {redirect_uri: string}) => {
+        window.location.replace(response.redirect_uri);
+      });
+  }
+
+  googleLogin() {
+    this.authService.requestGoogleRedirectUri()
       .subscribe((response: {redirect_uri: string}) => {
         window.location.replace(response.redirect_uri);
       });

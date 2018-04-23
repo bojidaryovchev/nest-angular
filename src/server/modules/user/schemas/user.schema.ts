@@ -13,7 +13,8 @@ export const UserSchema: Schema = new Schema({
   },
   google: {
     id: String,
-    email: String
+    email: String,
+    displayName: String
   },
   facebook: {
     id: String,

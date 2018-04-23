@@ -8,6 +8,7 @@ export const DB_CONNECTION_TOKEN: string = 'DbConnectionToken';
 export const USER_MODEL_TOKEN: string = 'UserModelToken';
 export const FACEBOOK_CONFIG_TOKEN: string = 'FacebookConfigToken';
 export const TWITTER_CONFIG_TOKEN: string = 'TwitterConfigToken';
+export const GOOGLE_CONFIG_TOKEN: string = 'GoogleConfigToken';
 
 export const MESSAGES = {
   UNAUTHORIZED_EMAIL_IN_USE: 'The email already exists',
