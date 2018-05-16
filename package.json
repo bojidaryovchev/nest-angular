@@ -6,18 +6,16 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build:client": "ng build",
-    "build:client:prod": "ng build --prod",
+    "build:client": "ng build --prod",
+    "build:universal": "ng build --prod && ng run nest-angular:server",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build:server": "rimraf ./bin && webpack --progress --colors",
-    "build:server:prod": "rimraf ./bin && webpack -p --progress --colors",
-    "build": "rimraf ./bin && npm run build:universal && npm run build:server",
+    "build": "npm run build:universal && npm run build:server",
     "watch:server": "rimraf ./bin && webpack --w --colors",
     "watch:client": "ng serve --proxy-config proxy.conf.json",
-    "watch": "rimraf ./bin && concurrent \" npm run watch:server \" \" npm run watch:client \" ",
-    "build:universal": "ng build --prod && ng run nest-angular:server"
+    "watch": "rimraf ./bin && concurrent \" npm run watch:server \" \" npm run watch:client \" "
   },
   "repository": {
     "type": "git",
