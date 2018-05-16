@@ -25,7 +25,7 @@ export class AngularUniversalModule implements NestModule {
   static forRoot(): DynamicModule {
     const options: IAngularUniversalOptions = {
       viewsPath: FOLDER_DIST_BROWSER,
-      bundle: require('../../../../dist/server/main.bundle.js')
+      bundle: require('../../../../dist/server/main.js')
     };
 
     return {

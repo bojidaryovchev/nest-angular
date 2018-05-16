@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 
@@ -8,7 +9,8 @@ const dev = env === 'development';
 
 // plugins
 const devPlugins = [
-    new NodemonPlugin()
+  new NodemonPlugin(),
+  new webpack.HotModuleReplacementPlugin()
 ];
 const prodPlugins = [];
 const commonPlugins = [];
@@ -17,33 +19,38 @@ const plugins = dev ? devPlugins.concat(commonPlugins) : prodPlugins.concat(comm
 // TODO: add plugins
 
 module.exports = {
-    entry: path.resolve(__dirname, "./src/server/main.ts"),
-    output: {
-        path: path.resolve(__dirname, "./bin"), 
-        filename: "server.bundle.js"
-    },
-    plugins: plugins,
-    target: "node",
-    externals: [nodeExternals()],
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: ["ts-loader"],
-                exclude: /node_modules/
-            },
-            {
-                enforce: "pre",
-                test: /\.tsx?$/,
-                loader: "tslint-loader",
-                options: {
-                    configFile: "./src/server/tslint.json"
-                },
-                exclude: /node_modules/,
-            }
-        ]
-    },
-    resolve: {
-        extensions: [ ".ts", ".tsx" ]
-    }
+  entry: ['webpack/hot/poll?1000', './src/server/main.ts'],
+  output: {
+    path: path.resolve(__dirname, "./bin"), 
+    filename: "server.bundle.js"
+  },
+  plugins: plugins,
+  target: "node",
+  mode: "development",
+  externals: [
+    nodeExternals({
+      whitelist: ['webpack/hot/poll?1000']
+    })
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: ["ts-loader"],
+        exclude: /node_modules/
+      },
+      {
+        enforce: "pre",
+        test: /\.tsx?$/,
+        loader: "tslint-loader",
+        options: {
+          configFile: "./src/server/tslint.json"
+        },
+        exclude: /node_modules/,
+      }
+    ]
+  },
+  resolve: {
+    extensions: [ ".ts", ".tsx", ".js" ]
+  }
 }

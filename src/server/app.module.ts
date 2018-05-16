@@ -14,7 +14,6 @@ import { AngularUniversalModule } from './modules/angular-universal/angular-univ
     UserModule,
     AngularUniversalModule.forRoot()
   ],
-  controllers: [],
-  components: [],
+  controllers: []
 })
 export class ApplicationModule {}

@@ -14,6 +14,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class RecipesComponent implements OnInit {
   recipes: RecipeItem[];
+  inBrowser: boolean;
 
   emailFormControl = new FormControl('', [
     Validators.email,
@@ -22,10 +23,6 @@ export class RecipesComponent implements OnInit {
   passwordFormControl = new FormControl('', [
     Validators.required
   ]);
-
-  email: string;
-  password: string;
-  inBrowser: boolean;
 
   constructor(
     private readonly recipesService: RecipesService,
@@ -80,11 +77,11 @@ export class RecipesComponent implements OnInit {
   }
 
   signUp() {
-    this.authService.signUp(this.email, this.password);
+    this.authService.signUp(this.emailFormControl.value, this.passwordFormControl.value);
   }
 
   signIn() {
-    this.authService.signIn(this.email, this.password);
+    this.authService.signIn(this.emailFormControl.value, this.passwordFormControl.value);
   }
 
   getProtected() {
