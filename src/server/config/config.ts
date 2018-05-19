@@ -3,10 +3,12 @@ import { normalize, join } from 'path';
 interface IEnvironmentConfig {
   rootPath: string;
   db: string;
-  port: number;
+  httpPort: number;
+  wsPort: number;
   jwtSecret: string;
-  origin: string;
-  protocol: string;
+  domain: string;
+  httpProtocol: string;
+  wsProtocol: string;
 }
 
 interface IConfig {
@@ -21,18 +23,22 @@ const Config: IConfig = {
   development: {
     rootPath,
     db: 'mongodb://localhost:27017/store',
-    port: 1337,
+    httpPort: 1337,
+    wsPort: 1338,
     jwtSecret: 'secret',
-    origin: 'localhost',
-    protocol: 'http'
+    domain: 'localhost',
+    httpProtocol: 'http',
+    wsProtocol: 'ws'
   },
   production: {
     rootPath,
     db: process.env.MONGODB_CONNECTION,
-    port: +process.env.PORT,
+    httpPort: +process.env.HTTP_SERVER_PORT,
+    wsPort: +process.env.WS_PORT,
     jwtSecret: process.env.JWT_SECRET,
-    origin: process.env.ORIGIN,
-    protocol: process.env.PROTOCOL
+    domain: process.env.DOMAIN,
+    httpProtocol: process.env.HTTP_PROTOCOL,
+    wsProtocol: process.env.WS_PROTOCOL
   }
 };
 

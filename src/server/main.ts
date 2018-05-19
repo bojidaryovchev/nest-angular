@@ -22,7 +22,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  await app.listen(SERVER_CONFIG.port);
+  await app.listen(SERVER_CONFIG.httpPort);
 
   if (module.hot) {
     module.hot.accept();

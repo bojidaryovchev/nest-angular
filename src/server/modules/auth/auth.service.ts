@@ -26,7 +26,7 @@ export class AuthService {
     @Inject(TWITTER_CONFIG_TOKEN) private readonly twitterConfig: ITwitterConfig,
     @Inject(GOOGLE_CONFIG_TOKEN) private readonly googleConfig: IGoogleConfig
   ) {
-    this.url = `${SERVER_CONFIG.protocol}://${SERVER_CONFIG.origin}:${SERVER_CONFIG.port}`;
+    this.url = `${SERVER_CONFIG.httpProtocol}://${SERVER_CONFIG.domain}:${SERVER_CONFIG.httpPort}`;
   }
 
   async createToken(user: IUser): Promise<IToken> {
