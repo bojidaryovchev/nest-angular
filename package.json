@@ -87,7 +87,7 @@
     "@angular/router": "6.0.1",
     "@nestjs/common": "4.6.6",
     "@nestjs/core": "4.6.6",
-    "@nestjs/graphql": "3.0.0",
+    "@nestjs/graphql": "2.0.0",
     "@nestjs/microservices": "4.6.6",
     "@nestjs/testing": "4.6.6",
     "@nestjs/websockets": "4.6.6",
