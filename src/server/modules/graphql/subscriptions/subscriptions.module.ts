@@ -4,7 +4,7 @@ import { SubscriptionsService } from './subscriptions.service';
 import { SERVER_CONFIG } from '../../../server.constants';
 
 @Module({
-  components: [SubscriptionsService],
+  providers: [SubscriptionsService],
   exports: [SubscriptionsService],
 })
 export class SubscriptionsModule {
@@ -13,7 +13,7 @@ export class SubscriptionsModule {
 
     return {
       module: SubscriptionsModule,
-      components: [...providers],
+      providers: [...providers],
       exports: [...providers],
     };
   }

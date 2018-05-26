@@ -1,4 +1,4 @@
-import { Component, Inject } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { use } from 'passport';
 
@@ -8,7 +8,7 @@ import { ITwitterConfig } from '../interfaces/twitter-config.interface';
 
 const TwitterTokenStrategy = require('passport-twitter-token');
 
-@Component()
+@Injectable()
 export class TwitterStrategy {
   constructor(
     @Inject(TWITTER_CONFIG_TOKEN) private readonly twitterConfig: ITwitterConfig,

@@ -1,4 +1,4 @@
-import { Module, NestModule, MiddlewaresConsumer, RequestMethod } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/common';
 import { GraphQLFactory, GraphQLModule } from '@nestjs/graphql';
 import { sync } from 'glob';
 import { readFileSync } from 'fs';
@@ -19,7 +19,7 @@ export class GraphqlModule implements NestModule {
     private readonly graphQLFactory: GraphQLFactory
   ) {}
 
-  configure(consumer: MiddlewaresConsumer): void {
+  configure(consumer: MiddlewareConsumer): void {
     const ws: string = `${config.wsProtocol}://${config.domain}:${config.wsPort}`;
     const subscriptionsEndpoint: string = `${ws}/subscriptions`;
     const schema = this.createSchema('src/server/**/*.graphql');
@@ -33,9 +33,9 @@ export class GraphqlModule implements NestModule {
           subscriptionsEndpoint
         })
       )
-      .forRoutes({ path: '/graphiql', method: RequestMethod.ALL })
+      .forRoutes('/graphiql')
       .apply(graphqlExpress(req => ({ schema, rootValue: req })))
-      .forRoutes({ path: '/graphql', method: RequestMethod.ALL });
+      .forRoutes('/graphql');
   }
 
   private createSchema(globPattern: string) {

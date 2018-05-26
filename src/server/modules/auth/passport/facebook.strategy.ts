@@ -1,4 +1,4 @@
-import { Component, Inject } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { use } from 'passport';
 
@@ -8,7 +8,7 @@ import { IUser } from '../../user/interfaces/user.interface';
 
 const FacebookTokenStrategy = require('passport-facebook-token');
 
-@Component()
+@Injectable()
 export class FacebookStrategy {
   constructor(
     @Inject(FACEBOOK_CONFIG_TOKEN) private readonly fbConfig: IFacebookConfig,

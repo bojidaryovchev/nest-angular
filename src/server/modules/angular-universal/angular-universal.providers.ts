@@ -1,5 +1,5 @@
 import { NestApplication } from '@nestjs/core';
-import { EXPRESS_REF } from '@nestjs/core/injector';
+import { HTTP_SERVER_REF } from '@nestjs/core/injector';
 
 import { setupUniversal } from './utils/setup-universal.utils';
 import { ANGULAR_UNIVERSAL_OPTIONS } from './angular-universal.constants';
@@ -9,6 +9,6 @@ export const angularUniversalProviders = [
   {
     provide: 'UNIVERSAL_INITIALIZER',
     useFactory: (app: NestApplication, options: IAngularUniversalOptions) => setupUniversal(app, options),
-    inject: [EXPRESS_REF, ANGULAR_UNIVERSAL_OPTIONS]
+    inject: [HTTP_SERVER_REF, ANGULAR_UNIVERSAL_OPTIONS]
   }
 ];

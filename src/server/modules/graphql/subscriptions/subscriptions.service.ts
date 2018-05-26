@@ -1,11 +1,11 @@
-import { Component, Inject, OnModuleDestroy } from '@nestjs/common';
+import { Injectable, Inject, OnModuleDestroy } from '@nestjs/common';
 import { ServerOptions, SubscriptionServer } from 'subscriptions-transport-ws';
 import { execute, subscribe, GraphQLSchema } from 'graphql';
 import { Server } from 'http';
 import * as WebSocket from 'ws';
 import { SUBSCRIPTION_SERVER } from './subscriptions.constants';
 
-@Component()
+@Injectable()
 export class SubscriptionsService implements OnModuleDestroy {
   private subscriptionServer: SubscriptionServer;
 

@@ -1,4 +1,4 @@
-import { Component, Inject } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { sign } from 'jsonwebtoken';
 import { get, post, Response } from 'request';
@@ -16,7 +16,7 @@ import { IFacebookConfig } from './interfaces/facebook-config.interface';
 import { ITwitterConfig } from './interfaces/twitter-config.interface';
 import { IGoogleConfig } from './interfaces/google-config.interface';
 
-@Component()
+@Injectable()
 export class AuthService {
   private url: string;
 

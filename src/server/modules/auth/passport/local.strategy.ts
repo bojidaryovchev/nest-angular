@@ -1,4 +1,4 @@
-import { Component, UnauthorizedException, Inject } from '@nestjs/common';
+import { Injectable, UnauthorizedException, Inject } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { use } from 'passport';
 import { Strategy } from 'passport-local';
@@ -7,7 +7,7 @@ import { IUser } from '../../user/interfaces/user.interface';
 import { generateHashedPassword, generateSalt } from '../../../utilities/encryption';
 import { MESSAGES, USER_MODEL_TOKEN } from '../../../server.constants';
 
-@Component()
+@Injectable()
 export class LocalStrategy {
   constructor(
     @Inject(USER_MODEL_TOKEN) private readonly userModel: Model<IUser>
