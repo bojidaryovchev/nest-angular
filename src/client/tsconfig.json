@@ -2,6 +2,21 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
+    "lib": [
+      "es5",
+      "es6",
+      "dom",
+      "es2015.core",
+      "es2015.collection",
+      "es2015.generator",
+      "es2015.iterable",
+      "es2015.promise",
+      "es2015.proxy",
+      "es2015.reflect",
+      "es2015.symbol",
+      "es2015.symbol.wellknown",
+      "esnext.asynciterable"
+    ]
   },
   "include": [
     "./**/*.ts"

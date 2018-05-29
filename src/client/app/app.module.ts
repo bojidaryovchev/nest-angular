@@ -2,8 +2,9 @@ import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-bro
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_ID, Inject, PLATFORM_ID, NgModule } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
+// components
 import { AppComponent } from './components/app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
@@ -13,13 +14,15 @@ import { RecipeDetailsComponent } from './components/recipes/recipe-details/reci
 import { RecipeItemComponent } from './components/recipes/recipes-list/recipe-item/recipe-item.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { ShoppingListEditComponent } from './components/shopping-list/shopping-list-edit/shopping-list-edit.component';
+
+// modules
 import { AppRoutingModule } from './app.routing.module';
-import { ServicesModule } from './services/services.module';
+import { GraphqlModule } from './app.graphql.module';
 import { GuardsModule } from './guards/guards.module';
-import { SharedModule } from './shared/shared.module';
-import { MaterialModule } from './material/material.module';
 import { InterceptorsModule } from './interceptors/interceptors.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './material/material.module';
+import { ServicesModule } from './services/services.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ServicesModule,
     SharedModule,
     GuardsModule,
+    // GraphqlModule,
     InterceptorsModule,
     FormsModule,
     ReactiveFormsModule
