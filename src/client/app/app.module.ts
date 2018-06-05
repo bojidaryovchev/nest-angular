@@ -17,7 +17,7 @@ import { ShoppingListEditComponent } from './components/shopping-list/shopping-l
 
 // modules
 import { AppRoutingModule } from './app.routing.module';
-import { GraphqlModule } from './app.graphql.module';
+// import { GraphqlModule } from './app.graphql.module';
 import { GuardsModule } from './guards/guards.module';
 import { InterceptorsModule } from './interceptors/interceptors.module';
 import { MaterialModule } from './material/material.module';
