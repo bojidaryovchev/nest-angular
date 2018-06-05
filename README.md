@@ -13,8 +13,6 @@ A fullstack JavaScript project, using technologies from the modern stack, such a
 * [Passport](https://github.com/jaredhanson/passport) - a popular library used to implement JavaScript authentication
 * [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - a JavaScript json web tokens implementation by auth0
 
-* important - if you want to have GraphQL support, follow the [Instructions](https://github.com/bojidaryovchev/nest-angular/master/README.md#Instructions)
-
 ## Running the project
 
 These instructions should be sufficient for one to get the project going on their local machine
