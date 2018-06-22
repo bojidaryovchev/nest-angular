@@ -64,3 +64,16 @@ Alternatively, if you only need to work on the backend, you can run
 npm run watch:server
 ```
 Keeping in mind that you need to have the Angular app built and a mongodb connection established
+
+## Instructions
+
+### Getting GraphQL to work
+
+Currently there are issues with several packages so even though we have GraphQL implemented, it stays commented out because it doesn't work.. Here are the instructions to make it work:
+
+- Download https://www.dropbox.com/s/7bvht9thbmwt1e5/fixed-apollo-modules.rar?dl=0 - those are the apollo-angular and apollo-angular-link-http modules compiled in commonjs - then go in your node_modules folder and replace your apollo-angular and apollo-angular-link-http modules with these ones
+- Download https://www.dropbox.com/s/n0vwfvdmn7wtkj8/fixed-nest-modules.rar?dl=0 - this is the fixed @nestjs/graphql module - there was an error when in combination with Angular Universal which is now fixed - then replace your @nestjs/graphql module with this one
+- Open node_modules/@types/ws/index.d.ts and find net.AddressInfo - you will see a type definition of a function:
+```address(): net.AddressInfo | string``` - change it to ```address(): string```
+
+Now, you can go ahead and uncomment the GraphqlModules on both client/server side and it works decently, I am using it in another project which is a clone of this one and everything works..
