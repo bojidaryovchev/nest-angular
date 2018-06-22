@@ -15,11 +15,11 @@ const devPlugins = [
 const prodPlugins = [];
 const commonPlugins = [];
 const plugins = dev ? devPlugins.concat(commonPlugins) : prodPlugins.concat(commonPlugins);
-
+const entry = dev ? ['webpack/hot/poll?1000', './src/server/main.ts'] : './src/server/main.ts';
 // TODO: add plugins
 
 module.exports = {
-  entry: ['webpack/hot/poll?1000', './src/server/main.ts'],
+  entry,
   output: {
     path: path.resolve(__dirname, "./bin"), 
     filename: "server.bundle.js"
