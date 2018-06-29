@@ -1,4 +1,4 @@
-import { normalize, join } from 'path';
+import { extractKey } from '../utilities/keys';
 
 interface IEnvironmentConfig {
   rootPath: string;
@@ -18,6 +18,7 @@ interface IConfig {
 }
 
 const rootPath = process.cwd();
+const jwtSecret = extractKey(`${rootPath}/keys/jwt.private.key`);
 
 const Config: IConfig = {
   development: {
@@ -25,7 +26,7 @@ const Config: IConfig = {
     db: 'mongodb://localhost:27017/store',
     httpPort: 1337,
     wsPort: 1338,
-    jwtSecret: 'secret',
+    jwtSecret,
     domain: 'localhost',
     httpProtocol: 'http',
     wsProtocol: 'ws'

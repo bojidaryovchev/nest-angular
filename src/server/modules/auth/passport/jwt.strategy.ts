@@ -5,6 +5,8 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 
 import { AuthService } from '../auth.service';
 import { SERVER_CONFIG, MESSAGES } from '../../../server.constants';
+import { IUser } from '../../user/interfaces/user.interface';
+import { IJwtPayload } from '../interfaces/jwt-payload.interface';
 
 @Injectable()
 export class JwtStrategy extends Strategy {
@@ -15,16 +17,19 @@ export class JwtStrategy extends Strategy {
         passReqToCallback: true,
         secretOrKey: SERVER_CONFIG.jwtSecret,
       },
-      async (req: Request, payload: any, next: Function) => await this.verify(req, payload, next),
+      async (req: Request, payload: IJwtPayload, next: Function) =>
+        await this.verify(payload, next)
     );
-    use(this);
+    use('jwt', this);
   }
 
-  public async verify(req: Request, payload: any, done: Function) {
-    const isValid = await this.authService.validateUser(payload);
-    if (!isValid) {
+  public async verify(payload: IJwtPayload, done: Function) {
+    const user: IUser = await this.authService.findUserById(payload.sub);
+
+    if (!user) {
       return done(new UnauthorizedException(MESSAGES.UNAUTHORIZED_UNRECOGNIZED_BEARER), false);
     }
-    done(null, payload);
+
+    done(null, user);
   }
 }

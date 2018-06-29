@@ -40,14 +40,8 @@ export class AuthService {
     };
   }
 
-  async validateUser(payload: any): Promise<boolean> {
-    const user: IUser = await this.userModel.findById(payload.sub);
-
-    if (user) {
-      return true;
-    }
-
-    return false;
+  async findUserById(id: string): Promise<IUser> {
+    return await this.userModel.findById(id);
   }
 
   async requestFacebookRedirectUri(): Promise<{redirect_uri: string}> {
