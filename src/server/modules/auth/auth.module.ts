@@ -60,9 +60,5 @@ export class AuthModule implements NestModule {
     consumer
       .apply(authenticate('google', { session: false }))
       .forRoutes('api/auth/google/token');
-
-    consumer
-      .apply(authenticate('jwt', { session: false }))
-      .forRoutes('api/auth/authorized');
   }
 }

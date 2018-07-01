@@ -89,6 +89,7 @@
     "@nestjs/core": "5.0.1",
     "@nestjs/graphql": "2.0.0",
     "@nestjs/microservices": "5.0.1",
+    "@nestjs/passport": "1.1.0",
     "@nestjs/testing": "5.0.1",
     "@nestjs/websockets": "5.0.1",
     "@nguniversal/express-engine": "6.0.0",
