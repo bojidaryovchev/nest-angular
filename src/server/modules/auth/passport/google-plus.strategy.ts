@@ -33,6 +33,7 @@ export class GoogleStrategy {
         const email: string = profile.emails.shift().value;
         const user: IUser = new this.userModel({
           method: 'google',
+          roles: ['user'],
           google: {
             id,
             email,

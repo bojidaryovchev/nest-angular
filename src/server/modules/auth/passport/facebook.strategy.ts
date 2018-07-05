@@ -32,6 +32,7 @@ export class FacebookStrategy {
         const email: string = profile.emails.shift().value;
         const user: IUser = new this.userModel({
           method: 'facebook',
+          roles: ['user'],
           facebook: {
             email,
             id: profile.id

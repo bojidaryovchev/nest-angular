@@ -28,6 +28,7 @@ export class LocalStrategy {
         const salt: string = generateSalt();
         const user: IUser = new this.userModel({
           method: 'local',
+          roles: ['user'],
           local: {
             email,
             salt,

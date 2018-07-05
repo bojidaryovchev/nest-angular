@@ -6,6 +6,7 @@ export const UserSchema: Schema = new Schema({
     enum: ['local', 'google', 'facebook', 'twitter'],
     required: true
   },
+  roles: [String],
   local: {
     email: {type: String, lowercase: true, unique: true, sparse: true},
     salt: String,

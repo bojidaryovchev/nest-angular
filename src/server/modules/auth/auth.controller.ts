@@ -1,8 +1,11 @@
 import { Controller, Post, Get, Req, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { Request } from 'express';
+
 import { AuthService } from './auth.service';
 import { IToken } from './interfaces/token.interface';
-import { Request } from 'express';
-import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from '../../guards/roles.guard';
+import { Roles } from '../../decorators/roles.decorator';
 
 @Controller('api/auth')
 export class AuthController {
@@ -64,7 +67,8 @@ export class AuthController {
   }
 
   @Get('authorized')
-  @UseGuards(AuthGuard('jwt'))
+  @Roles('user')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   public async authorized() {
     console.log('Authorized route...');
   }

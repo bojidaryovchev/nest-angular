@@ -32,6 +32,7 @@ export class TwitterStrategy {
         const { id, username, displayName } = profile;
         const user: IUser = new this.userModel({
           method: 'twitter',
+          roles: ['user'],
           twitter: {
             id,
             username,
