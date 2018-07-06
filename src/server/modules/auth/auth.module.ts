@@ -30,8 +30,7 @@ import { bodyValidatorMiddleware } from './middlewares/body-validator.middleware
     TwitterStrategy,
     GoogleStrategy
   ],
-  controllers: [AuthController],
-  exports: [AuthService]
+  controllers: [AuthController]
 })
 export class AuthModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {

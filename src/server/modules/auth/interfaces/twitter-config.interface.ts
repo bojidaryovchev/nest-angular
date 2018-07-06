@@ -1,8 +1,8 @@
 export interface ITwitterConfig {
-  consumer_key: string;
-  consumer_secret: string;
-  request_token_uri: string;
-  login_dialog_uri: string;
-  access_token_uri: string;
-  oauth_redirect_uri: string;
+  readonly consumer_key: string;
+  readonly consumer_secret: string;
+  readonly request_token_uri: string;
+  readonly login_dialog_uri: string;
+  readonly access_token_uri: string;
+  readonly oauth_redirect_uri: string;
 };
