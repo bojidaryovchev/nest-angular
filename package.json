@@ -14,7 +14,7 @@
     "build:server": "rimraf ./bin && webpack --progress --colors",
     "build": "npm run build:universal && npm run build:server",
     "watch:server": "rimraf ./bin && webpack --w --colors",
-    "watch:client": "ng serve --proxy-config proxy.conf.json",
+    "watch:client": "ng serve --proxy-config proxy.conf.json  --host 0.0.0.0 --disable-host-check",
     "watch": "concurrent \" npm run watch:server \" \" npm run watch:client \" "
   },
   "repository": {
