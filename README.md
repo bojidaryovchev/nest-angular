@@ -77,3 +77,13 @@ Currently there are issues with several packages so even though we have GraphQL 
 ```address(): net.AddressInfo | string``` - change it to ```address(): string```
 
 Now, you can go ahead and uncomment the GraphqlModules on both client/server side and it works decently, I am using it in another project which is a clone of this one and everything works..
+
+### Use Social login
+
+Modify with your application credentials:
+
+- src/server/modules/auth/config/facebook-config.ts 
+- src/server/modules/auth/config/google-config.ts
+- src/server/modules/auth/config/twitter-config.ts
+
+To use it in mobile application with Facebook-token integration (Facebook App), use /api/auth/facebook/token endpoint.
