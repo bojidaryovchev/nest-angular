@@ -2,7 +2,7 @@ import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/c
 import { GraphQLFactory, GraphQLModule } from '@nestjs/graphql';
 import { sync } from 'glob';
 import { readFileSync } from 'fs';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+// import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { SERVER_CONFIG as config } from '../../server.constants';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 import { SubscriptionsService } from './subscriptions/subscriptions.service';
@@ -24,18 +24,18 @@ export class GraphqlModule implements NestModule {
     const subscriptionsEndpoint: string = `${ws}/subscriptions`;
     const schema = this.createSchema('src/server/**/*.graphql');
 
-    this.subscriptionsService.createSubscriptionServer(schema);
-
-    consumer
-      .apply(
-        graphiqlExpress({
-          endpointURL: '/graphql',
-          subscriptionsEndpoint
-        })
-      )
-      .forRoutes('/graphiql')
-      .apply(graphqlExpress(req => ({ schema, rootValue: req })))
-      .forRoutes('/graphql');
+    // this.subscriptionsService.createSubscriptionServer(schema);
+    //
+    // consumer
+    //   .apply(
+    //     graphiqlExpress({
+    //       endpointURL: '/graphql',
+    //       subscriptionsEndpoint
+    //     })
+    //   )
+    //   .forRoutes('/graphiql')
+    //   .apply(graphqlExpress(req => ({ schema, rootValue: req })))
+    //   .forRoutes('/graphql');
   }
 
   private createSchema(globPattern: string) {
@@ -52,6 +52,6 @@ export class GraphqlModule implements NestModule {
 
     const typeDefs: string = mergedFileContents.join('\n');
 
-    return this.graphQLFactory.createSchema({ typeDefs });
+  //  return this.graphQLFactory.createSchema({ typeDefs });
   }
 }

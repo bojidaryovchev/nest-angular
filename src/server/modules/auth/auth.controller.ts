@@ -71,6 +71,6 @@ export class AuthController {
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   public async authorized(): Promise<any> {
     console.log('Authorized route...');
-    return {hello:'D'};
+    return {'message': 'Hello'};
   }
 }
