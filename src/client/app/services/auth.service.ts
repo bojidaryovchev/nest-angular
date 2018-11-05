@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import { IToken } from '../../../server/modules/auth/interfaces/token.interface';
+import 'rxjs/add/operator/mergeMap';
 
 @Injectable()
 export class AuthService {
@@ -32,7 +33,11 @@ export class AuthService {
   }
 
   facebookSignIn(code: string): Observable<any> {
-    return this.httpClient.post('api/auth/facebook/signin', { code });
+    return this.httpClient.post('api/auth/facebook/signin', { code })
+      .flatMap((token: IToken) => {
+        localStorage.setItem('token', token.token);
+        return of(token);
+      }).pipe();
   }
 
   requestTwitterRedirectUri(): Observable<any> {
