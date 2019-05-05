@@ -15,7 +15,9 @@
     "build": "npm run build:universal && npm run build:server",
     "watch:server": "rimraf ./bin && webpack --w --colors",
     "watch:client": "ng serve --proxy-config proxy.conf.json  --host 0.0.0.0 --disable-host-check",
-    "watch": "concurrently \" npm run watch:server \" \" npm run watch:client \" "
+    "watch": "concurrently \" npm run watch:server \" \" npm run watch:client \" ",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -128,6 +130,8 @@
     "rxjs-compat": "6.3.3",
     "subscriptions-transport-ws": "0.9.15",
     "ws": "6.1.0",
-    "zone.js": "0.8.26"
-  }
+    "zone.js": "0.8.26",
+    "snyk": "^1.161.1"
+  },
+  "snyk": true
 }
