@@ -111,7 +111,7 @@
     "graphql-tag": "2.10.0",
     "graphql-tools": "4.0.3",
     "hammerjs": "2.0.8",
-    "helmet": "3.14.0",
+    "helmet": "3.21.1",
     "joi": "14.0.4",
     "jsonwebtoken": "8.3.0",
     "mongoose": "5.3.9",
