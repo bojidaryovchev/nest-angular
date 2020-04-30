@@ -1,0 +1,16 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - '@nestjs/graphql > lodash':
+        patched: '2020-04-30T21:16:08.048Z'
+    - apollo-server-express > apollo-server-core > lodash:
+        patched: '2020-04-30T21:16:08.048Z'
+    - mongoose > async > lodash:
+        patched: '2020-04-30T21:16:08.048Z'
+    - '@nestjs/core > @nuxtjs/opencollective > consola > lodash':
+        patched: '2020-04-30T21:16:08.048Z'
+    - apollo-server-express > apollo-server-core > apollo-engine-reporting > lodash:
+        patched: '2020-04-30T21:16:08.048Z'
