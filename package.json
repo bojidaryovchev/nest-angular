@@ -127,7 +127,7 @@
     "rxjs": "6.3.3",
     "rxjs-compat": "6.3.3",
     "subscriptions-transport-ws": "0.9.15",
-    "ws": "6.1.0",
+    "ws": "7.4.6",
     "zone.js": "0.8.26"
   }
 }
