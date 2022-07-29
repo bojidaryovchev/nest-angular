@@ -114,7 +114,7 @@
     "helmet": "3.14.0",
     "joi": "14.0.4",
     "jsonwebtoken": "8.3.0",
-    "mongoose": "5.3.9",
+    "mongoose": "6.4.6",
     "passport": "0.4.0",
     "passport-facebook-token": "3.3.0",
     "passport-google-plus-token": "2.1.0",
