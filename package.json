@@ -91,7 +91,7 @@
     "@nestjs/microservices": "5.4.0",
     "@nestjs/passport": "5.1.0",
     "@nestjs/testing": "5.4.0",
-    "@nestjs/websockets": "5.4.0",
+    "@nestjs/websockets": "6.0.0",
     "@nguniversal/express-engine": "7.0.2",
     "@nguniversal/module-map-ngfactory-loader": "7.0.2",
     "apollo-angular": "1.5.0",
